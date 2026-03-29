@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyJournal Community — You Choose What Stays</title>
+  <meta name="description" content="A place for the work. And the people doing it.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --emerald-dark: #196716;
+      --emerald-mid: #289527;
+      --cream: #F5F0E8;
+      --cream-dark: #DDD4C0;
+      --near-black: #0D0D0D;
+      --dark-gray-green: #3A4A3D;
+      --warm-taupe: #7A6E62;
+      --title-cream: #E1D9CB;
+      --serif: 'Merriweather', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--serif);
+      background: var(--cream);
+      color: var(--near-black);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      border-bottom: 0.5px solid rgba(27,30,29,0.15);
+      position: sticky;
+      top: 0;
+      background: var(--cream);
+      z-index: 100;
+    }
+
+    .nav-logo { font-size: 12px; letter-spacing: 0.08em; font-style: italic; color: var(--near-black); }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      color: var(--dark-gray-green);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--near-black); }
+
+    /* HERO */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 4rem 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 0.5px solid rgba(27,30,29,0.15);
+    }
+
+    .hero-headline {
+      font-size: clamp(36px, 5vw, 62px);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--near-black);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 62px);
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--near-black);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+      max-width: 700px;
+    }
+
+    .hero-arc {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 3rem;
+      margin-top: 0.25rem;
+    }
+    .arc-word {
+      font-size: clamp(13px, 1.6vw, 16px);
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: var(--warm-taupe);
+      text-transform: uppercase;
+    }
+
+    /* FORK */
+    .paths {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 900px;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    .path {
+      padding: 3rem 2.5rem;
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s;
+      position: relative;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      border: 0.5px solid rgba(27,30,29,0.15);
+      text-align: left;
+    }
+
+    .path-done { background: rgba(245,240,232,0.6); }
+    .path-done:hover { background: rgba(237,231,219,0.75); border-color: rgba(27,30,29,0.25); }
+    .path-new { background: rgba(245,240,232,0.6); }
+    .path-new:hover { background: rgba(237,231,219,0.75); border-color: rgba(27,30,29,0.25); }
+
+    .path-label {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: var(--warm-taupe);
+      margin-bottom: 1.1rem;
+      display: block;
+    }
+
+    .path-heading {
+      font-size: clamp(15px, 1.7vw, 18px);
+      font-weight: 400;
+      line-height: 1.55;
+      color: #0D0D0D;
+      margin-bottom: 0.75rem;
+    }
+
+    .path-desc {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #2A2420;
+      margin-bottom: auto;
+      padding-bottom: 2rem;
+    }
+
+    .path-arrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--title-cream);
+      background: var(--emerald-dark);
+      padding: 8px 22px;
+      border-radius: 3px;
+      transition: background 0.2s;
+      align-self: center;
+    }
+    .path:hover .path-arrow {
+      background: var(--near-black);
+    }
+
+    /* SECTIONS */
+    section { padding: 5rem 4rem; border-bottom: 0.5px solid rgba(27,30,29,0.15); }
+    .section-label { font-size: 10px; letter-spacing: 0.16em; color: var(--warm-taupe); margin-bottom: 2rem; display: block; }
+
+    /* PROBLEM */
+    .problem-heading { font-size: clamp(20px, 2.4vw, 28px); font-weight: 400; line-height: 1.4; color: var(--near-black); margin-bottom: 1.5rem; }
+    .problem p { font-size: 17px; font-weight: 300; line-height: 1.95; color: var(--near-black); text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    .problem p + p { margin-top: 1.5rem; }
+
+    /* WHAT THIS IS */
+    .language-section p { font-size: 17px; font-weight: 300; line-height: 1.95; color: var(--near-black); text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    .language-section p + p { margin-top: 1.5rem; }
+    .what-this-is p + p { margin-top: 1.25rem; }
+
+    /* JOURNAL */
+    .journal-section { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .journal-text { display: flex; flex-direction: column; }
+    .journal-visual { height: 480px; overflow: hidden; }
+    .journal-kicker { font-size: 17px; font-weight: 300; line-height: 1.95; color: var(--near-black); margin-bottom: 1.5rem; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    .journal-text h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 400; line-height: 1.1; color: var(--emerald-dark); margin-bottom: 0.4rem; letter-spacing: -0.01em; text-align: center; }
+    .journal-title-rule { border: none; border-top: 0.5px solid var(--emerald-dark); display: block; margin: 0.3rem auto 0.6rem auto; }
+    .journal-subtitle { font-size: clamp(18px, 2vw, 22px); font-weight: 300; font-style: italic; color: var(--emerald-dark); display: block; text-align: center; margin-bottom: 2rem; }
+    .journal-kicker { font-size: 17px; font-weight: 300; line-height: 1.95; color: var(--near-black); margin-bottom: 1.5rem; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    .journal-text p { font-size: 17px; font-weight: 300; line-height: 1.95; color: var(--near-black); margin-bottom: 1.5rem; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    .journal-visual-label { font-size: 10px; letter-spacing: 0.12em; color: var(--warm-taupe); text-align: center; }
+    .science-page { width: 100%; height: 100%; background: #F0EBE1; border: 0.5px solid rgba(27,30,29,0.12); display: flex; flex-direction: column; box-shadow: 2px 3px 14px rgba(27,30,29,0.09); }
+    .science-page-inner { padding: 1.6rem 2rem 1.5rem; overflow-y: auto; height: 100%; }
+    .science-week-label { font-size: 8px; letter-spacing: 0.18em; color: var(--warm-taupe); margin-bottom: 0.6rem; flex-shrink: 0; }
+    .science-title { font-size: clamp(15px, 1.6vw, 20px); font-weight: 400; color: var(--near-black); line-height: 1.2; margin-bottom: 0.6rem; letter-spacing: -0.01em; flex-shrink: 0; }
+    .science-subtitle { display: none; }
+    .science-rule { height: 0.5px; background: rgba(27,30,29,0.2); margin-bottom: 0.9rem; flex-shrink: 0; }
+    .science-body { font-size: clamp(10px, 1.05vw, 13px); font-weight: 300; line-height: 1.8; color: var(--near-black); margin-bottom: 0.6rem; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    .science-divider { height: 0.5px; background: rgba(27,30,29,0.1); margin: 0.9rem 0; flex-shrink: 0; }
+    .science-closing { color: #3A4A3D; }
+    .science-page-number { font-size: 8px; letter-spacing: 0.1em; color: var(--warm-taupe); margin-top: auto; padding-top: 0.75rem; text-align: center; flex-shrink: 0; }
+
+    /* BTN */
+    .btn-secondary {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--dark-gray-green);
+      border-bottom: 0.5px solid var(--dark-gray-green);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { color: var(--near-black); border-color: var(--near-black); }
+
+    /* PULL QUOTE */
+    .pull-quote-section { border-bottom: 0.5px solid rgba(27,30,29,0.15); }
+    .pull-quote-section .section-label { color: var(--warm-taupe); }
+    .pull-quote { font-size: clamp(16px, 2.2vw, 21px); font-weight: 300; font-style: italic; line-height: 1.85; color: var(--near-black); max-width: 660px; border-left: 4px solid var(--emerald-mid); padding-left: 2rem; margin-bottom: 1.75rem; }
+    .pull-link { font-size: 12px; letter-spacing: 0.06em; color: var(--warm-taupe); border-bottom: 0.5px solid rgba(27,30,29,0.2); padding-bottom: 2px; transition: color 0.2s; }
+    .pull-link:hover { color: var(--near-black); }
+
+    /* COMMUNITY */
+    .community-section h2 { font-size: clamp(20px, 2.6vw, 30px); font-weight: 300; font-style: italic; line-height: 1.4; color: var(--near-black); max-width: 520px; margin-bottom: 1.75rem; }
+    .community-section p { font-size: 17px; font-weight: 300; line-height: 1.95; color: var(--near-black); }
+    .community-section p + p { margin-top: 1.25rem; }
+    .community-section .btn-secondary { margin-top: 1.75rem; }
+
+    /* EMAIL */
+    .email-section h3 { font-size: 17px; font-weight: 300; line-height: 1.75; color: var(--near-black); max-width: 100%; margin-bottom: 2rem; font-style: normal; }
+    .email-form { display: flex; max-width: 440px; }
+    .email-form input { flex: 1; font-family: var(--serif); font-size: 13px; font-weight: 300; padding: 13px 16px; background: transparent; border: 0.5px solid rgba(27,30,29,0.3); border-right: none; color: var(--near-black); outline: none; transition: border-color 0.2s; }
+    .email-form input::placeholder { color: var(--warm-taupe); }
+    .email-form input:focus { border-color: var(--emerald-mid); }
+    .email-form button { font-family: var(--serif); font-size: 12px; font-weight: 400; letter-spacing: 0.04em; padding: 13px 20px; background: var(--emerald-dark); color: var(--title-cream); border: none; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+    .email-form button:hover { background: var(--near-black); }
+
+    /* FOOTER */
+    footer { padding: 2.5rem 4rem; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+    .footer-logo { font-size: 12px; font-style: italic; color: var(--warm-taupe); }
+    .footer-follow { font-size: 16px; font-weight: 400; letter-spacing: 0.01em; color: #0D0D0D; margin-bottom: 0.5rem; }
+    .footer-socials { display: flex; align-items: center; gap: 2rem; }
+    .footer-social { font-size: 14px; font-weight: 400; letter-spacing: 0.02em; color: var(--near-black); transition: opacity 0.2s; display: flex; align-items: center; gap: 7px; text-decoration: none; }
+    .footer-social:hover { opacity: 0.7; }
+    .footer-bottom { width: 100%; display: flex; justify-content: center; align-items: center; padding-top: 1.5rem; border-top: 0.5px solid rgba(27,30,29,0.12); }
+    .footer-copy { font-size: 10px; letter-spacing: 0.04em; color: var(--warm-taupe); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero, section, .accent-break, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .hero { padding-top: 4rem; padding-bottom: 4rem; min-height: 80vh; }
+      .hero-arc { flex-direction: column; align-items: center; gap: 0.75rem; }
+      .hero-arc .arc-lily { display: none; }
+      .arc-word { letter-spacing: 0.12em; font-size: 11px; }
+      .arc-word::before { content: '✽'; color: #8B1A1A; opacity: 0.4; margin-right: 0.6em; font-size: 14px; }
+      .paths { grid-template-columns: 1fr; gap: 1rem; }
+      .journal-visual { display: block; height: 300px; }
+      .journal-section { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pull-quote { padding-left: 1.25rem; font-size: 17px; }
+      .email-form { flex-direction: column; max-width: 100%; }
+      .email-form input { border-right: 0.5px solid rgba(27,30,29,0.3); border-bottom: none; }
+      .community-section h2 { font-size: 22px; }
+      .footer-socials { flex-direction: column; align-items: center; gap: 1rem; }
+    }
+  
+    .page-lily {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120vh;
+      height: 120vh;
+      opacity: 0.015;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .page-lily svg {
+      width: 100%;
+      height: 100%;
+    }
+    nav, .hero, section, .accent-break, footer {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  
+  <div class="page-lily">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+  <path fill="none" stroke="#8B1A1A" stroke-width="1.45" stroke-linecap="round" d="M 199.98,200.0 C 199.98,182.14 201.06,158.94 201.06,137.82 C 201.06,121.74 199.98,106.86 199.98,96.48"/>
+  <path fill="none" stroke="#8B1A1A" stroke-width="1.45" stroke-linecap="round" d="M 199.98,200.0 C 210.27,170.0 238.39,124.22 252.45,101.32"/>
+  <path fill="#8B1A1A" stroke="none" d="M 256.36,101.32 C 256.36,99.16 254.61,97.41 252.45,97.41 C 250.29,97.41 248.54,99.16 248.54,101.32 C 248.54,103.48 250.29,105.23 252.45,105.23 C 254.61,105.23 256.36,103.48 256.36,101.32"/>
+  <path fill="none" stroke="#8B1A1A" stroke-width="1.45" stroke-linecap="round" d="M 199.98,200.0 C 214.52,182.39 254.27,155.5 274.15,142.06"/>
+  <path fill="#8B1A1A" stroke="none" d="M 278.06,142.06 C 278.06,139.9 276.31,138.15 274.15,138.15 C 271.99,138.15 270.24,139.9 270.24,142.06 C 270.24,144.22 271.99,145.97 274.15,145.97 C 276.31,145.97 278.06,144.22 278.06,142.06"/>
+  <path fill="none" stroke="#8B1A1A" stroke-width="1.45" stroke-linecap="round" d="M 199.98,200.0 C 218.9,194.83 258.54,189.98 287.07,185.87 C 290.05,185.44 292.91,185.02 295.61,184.61"/>
+  <path fill="none" stroke="#8B1A1A" stroke-width="1.45" stroke-linecap="round" d="M 199.98,200.0 C 218.63,209.39 269.6,223.73 295.08,230.9"/>
+  <path fill="#8B1A1A" stroke="none" d="M 298.99,230.9 C 298.99,228.74 297.24,226.99 295.08,226.99 C 292.93,226.99 291.17,228.74 291.17,230.9 C 291.17,233.06 292.93,234.81 295.08,234.81 C 297.24,234.81 298.99,233.06 298.99,230.9"/>
+  <path fill="none" stroke="#8B1A1A" stroke-width="1.45" stroke-linecap="round" d="M 199.98,200.0 C 211.54,221.37 243.16,253.99 258.97,270.29"/>
+  <path fill="none" stroke="#8B1A1A" stroke-width="1.45" stroke-linecap="round" d="M 199.98,200.0 C 204.3,231.48 216.1,279.54 222.0,303.56"/>
+  <path fill="#8B1A1A" stroke="none" d="M 225.91,303.56 C 225.91,301.4 224.16,299.65 222.0,299.65 C 219.84,299.65 218.09,301.4 218.09,303.56 C 218.09,305.72 219.84,307.47 222.0,307.47 C 224.16,307.47 225.91,305.72 225.91,303.56"/>
+  <path fill="none" stroke="#8B1A1A" stroke-width="1.45" stroke-linecap="round" d="M 199.98,200.0 C 195.09,228.33 181.71,271.56 175.02,293.18"/>
+  <path fill="none" stroke="#8B1A1A" stroke-width="1.45" stroke-linecap="round" d="M 199.98,200.0 C 185.33,225.25 145.24,263.79 125.2,283.05"/>
+  <path fill="#8B1A1A" stroke="none" d="M 129.11,283.05 C 129.11,280.89 127.36,279.14 125.2,279.14 C 123.04,279.14 121.29,280.89 121.29,283.05 C 121.29,285.21 123.04,286.96 125.2,286.96 C 127.36,286.96 129.11,285.21 129.11,283.05"/>
+  <path fill="none" stroke="#8B1A1A" stroke-width="1.45" stroke-linecap="round" d="M 199.98,200.0 C 191.89,203.36 177.25,208.55 161.62,213.19 C 156.88,214.59 152.12,216.18 147.37,217.34 C 135.1,220.35 123.25,222.54 114.76,223.5"/>
+  <path fill="none" stroke="#8B1A1A" stroke-width="1.45" stroke-linecap="round" d="M 199.98,200.0 C 193.02,196.49 181.73,191.68 168.85,187.42 C 146.06,179.89 118.39,172.75 101.53,168.01"/>
+  <path fill="#8B1A1A" stroke="none" d="M 105.44,168.01 C 105.44,165.85 103.69,164.1 101.53,164.1 C 99.37,164.1 97.62,165.85 97.62,168.01 C 97.62,170.17 99.37,171.92 101.53,171.92 C 103.69,171.92 105.44,170.17 105.44,168.01"/>
+  <path fill="#8B1A1A" stroke="none" d="M 133.7,115.82 C 135.21,114.28 135.2,111.81 133.67,110.29 C 132.13,108.77 129.65,108.78 128.14,110.32 C 126.62,111.86 126.63,114.33 128.17,115.85 C 129.7,117.37 132.18,117.35 133.7,115.82"/>
+  <path fill="none" stroke="#8B1A1A" stroke-width="1.45" stroke-linecap="round" d="M 199.98,200.0 C 186.93,174.07 151.21,134.5 133.35,114.72"/>
+  <path fill="#8B1A1A" stroke="none" d="M 202.53,200.0 C 202.53,198.59 201.39,197.45 199.98,197.45 C 198.58,197.45 197.43,198.59 197.43,200.0 C 197.43,201.41 198.58,202.55 199.98,202.55 C 201.39,202.55 202.53,201.41 202.53,200.0"/>
+</svg>
+  </div>
+
+  <nav>
+    <span class="nav-logo">MyJournal Community</span>
+    <ul class="nav-links">
+      <li><a href="community_1.html">Community</a></li>
+      <li><a href="#journal">The Journal</a></li>
+      <li><a href="about_2_8.html">About</a></li>
+      <li><a href="contact_1.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+
+    <h1 class="hero-headline">MyJournal Community</h1>
+    <div class="hero-arc">
+      <span class="arc-word">Vulnerability</span>
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="display:inline-block;vertical-align:middle;margin:0 0.75rem;opacity:0.45;">
+  <g stroke="#8B1A1A" stroke-width="0.9" stroke-linecap="round" fill="none">
+    <line x1="20" y1="20" x2="20" y2="8"/>
+    <line x1="20" y1="20" x2="28" y2="10"/>
+    <line x1="20" y1="20" x2="32" y2="20"/>
+    <line x1="20" y1="20" x2="28" y2="30"/>
+    <line x1="20" y1="20" x2="20" y2="32"/>
+    <line x1="20" y1="20" x2="12" y2="30"/>
+    <line x1="20" y1="20" x2="8" y2="20"/>
+    <line x1="20" y1="20" x2="12" y2="10"/>
+  </g>
+  <g fill="#8B1A1A">
+    <circle cx="20" cy="7" r="1.5"/>
+    <circle cx="29" cy="9" r="1.5"/>
+    <circle cx="33" cy="20" r="1.5"/>
+    <circle cx="29" cy="31" r="1.5"/>
+    <circle cx="20" cy="33" r="1.5"/>
+    <circle cx="11" cy="31" r="1.5"/>
+    <circle cx="7" cy="20" r="1.5"/>
+    <circle cx="11" cy="9" r="1.5"/>
+  </g>
+</svg>
+      <span class="arc-word">Authenticity</span>
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="display:inline-block;vertical-align:middle;margin:0 0.75rem;opacity:0.45;">
+  <g stroke="#8B1A1A" stroke-width="0.9" stroke-linecap="round" fill="none">
+    <line x1="20" y1="20" x2="20" y2="8"/>
+    <line x1="20" y1="20" x2="28" y2="10"/>
+    <line x1="20" y1="20" x2="32" y2="20"/>
+    <line x1="20" y1="20" x2="28" y2="30"/>
+    <line x1="20" y1="20" x2="20" y2="32"/>
+    <line x1="20" y1="20" x2="12" y2="30"/>
+    <line x1="20" y1="20" x2="8" y2="20"/>
+    <line x1="20" y1="20" x2="12" y2="10"/>
+  </g>
+  <g fill="#8B1A1A">
+    <circle cx="20" cy="7" r="1.5"/>
+    <circle cx="29" cy="9" r="1.5"/>
+    <circle cx="33" cy="20" r="1.5"/>
+    <circle cx="29" cy="31" r="1.5"/>
+    <circle cx="20" cy="33" r="1.5"/>
+    <circle cx="11" cy="31" r="1.5"/>
+    <circle cx="7" cy="20" r="1.5"/>
+    <circle cx="11" cy="9" r="1.5"/>
+  </g>
+</svg>
+      <span class="arc-word">Accountability</span>
+    </div>
+
+    <div class="paths">
+      <a href="#community" class="path path-done">
+        <span class="path-label">90 DAYS DONE</span>
+        <p class="path-heading">I finished. I'm looking for my people.</p>
+        <p class="path-desc">Ninety days alone builds a private language. The community is yours to share that language with. The wins, the hard parts, all of it.</p>
+        <span class="path-arrow">Enter</span>
+      </a>
+      <a href="#new" class="path path-new">
+        <span class="path-label">NEW HERE</span>
+        <p class="path-heading">I'm new here. Tell me more.</p>
+        <p class="path-desc">Welcome. We reject toxic positivity and mechanical performance. Bring yourself, your curiosity, and your willingness to learn what honest change demands of you and what makes it stick.</p>
+        <span class="path-arrow">Start here</span>
+      </a>
+    </div>
+</div>
+
+  <section id="new" class="problem">
+    <h2 class="problem-heading">This community exists for people who take their inner lives seriously.</h2>
+    <p>Who've sat with hard questions long enough to stop expecting easy answers. Some arrive having done the ninety days. Some arrive still deciding.</p>
+    <p>Either way, you know what it takes to sit with the patterns that run you, the discomfort that comes with the gap between knowing and doing, which is what most people spend their lives running from, without ever knowing they're running.</p>
+  </section>
+
+  <section class="language-section">
+    <img src="MockUp_journal_cover_March27_5.jpg" alt="You Choose What Stays — A 12-Week Guided Journal" style="float:right; width:420px; margin: 0 0 2rem 3.5rem; border-radius:2px; display:block;">
+    <p>Twelve weeks of raw inner work opens new alleys, new hope. You now have tangible tools to create the change you've longed for. But this inner work has also silently developed something alongside you, elusive and entirely private. It's a language for the exact shape of what lingers in you and can now be named. It's a language that can identify the moments before those patterns run you. The one that grants you access to words to describe the gaps you keep finding in your behavior, old and new. And it's a language you share with everyone who has done this alongside you.</p>
+    <p>The people here built the same language. Someone at a kitchen table at 6am, someone on a train, someone in the particular silence of a house, finally gone quiet.</p>
+    <p>Each of them alone.</p>
+    <p>But on the same pages.</p>
+    <p>Through the same process.</p>
+    <p style="clear:both;">When someone reads what you wrote about a setback, and responds not with advice but with "oh, I know that," something shifts in both of you. The shame, the solitude, the stuckness. The resistance drops. The isolation lifts. The change deepens.</p>
+  </section>
+
+  <section id="journal" class="journal-section" style="background:var(--cream);">
+    <div class="journal-text">
+      <div style="text-align:center; margin-bottom:0.6rem;">
+          <h2>You Choose What Stays</h2>
+          <hr class="journal-title-rule">
+      </div>
+      <span class="journal-subtitle">A 12-Week Guided Journal</span>
+      <p class="journal-kicker">This is the journal for people who are done with journals that ask them to list three things they're grateful for.</p>
+      <p>A 12-week guided journal built on behavioral change methodology. Twelve weeks. Five daily pages, weekly reflections, pattern tracking, and a 90-day review. Designed to work with how change actually happens in you, not around it.</p>
+      <p>It assumes intelligence, respects your time, and asks only for honesty. Available whenever you need it: at six in the morning, at midnight, in the ten minutes before the day asks everything of you again.</p>
+      <a href="https://amazon.com" class="btn-secondary">See the journal</a>
+    </div>
+    <div class="journal-visual">
+      <div class="science-page">
+        <div class="science-page-inner">
+          <p class="science-week-label">A page from inside the journal &nbsp;·&nbsp; Week 3</p>
+          <h3 class="science-title">How Repetition Quietly Shapes You</h3>
+          <div class="science-rule"></div>
+          <p class="science-body">The human nervous system optimizes for efficiency. Repeated actions become easier because the neural pathways supporting them become more efficient. When neurons activate together repeatedly, their connections strengthen, a process known as Hebbian learning. What is practiced becomes faster. What becomes faster requires less conscious effort.</p>
+          <p class="science-body">Habits form through repetition and reinforcement. When a behavior produces relief, resolution, or completion, the brain registers it as worth repeating. Dopamine (a neurotransmitter released in moments of reward and relief, central to how the brain learns what to repeat) helps mark actions that successfully resolve a prediction. The association between cue and behavior strengthens.</p>
+          <p class="science-body">Over time, repeated behaviors shift from deliberate control to automatic execution. The basal ganglia (a cluster of structures deep in the brain that store and trigger learned sequences) help store and trigger learned patterns. The prefrontal cortex (located at the front of the brain, responsible for deliberate decision-making and conscious choice) becomes less involved once the pattern is well established. Efficiency increases. Effort decreases.</p>
+          <p class="science-body">The same mechanism applies to emotional and relational behavior. Emotional reactions, conversational styles, withdrawal, confrontation, silence, over-explanation: all can become efficient through repetition alone.</p>
+          <p class="science-body">This is why change feels difficult.</p>
+          <p class="science-body science-closing">Interrupting a habit requires engaging conscious control in moments where an older pathway has already been primed through repetition.</p>
+          <p class="science-body">Changing direction requires repetition as well.</p>
+          <p class="science-body">Each time you practice a different response, alternative neural pathways are activated. If repeated, these pathways undergo long-term potentiation (a measurable strengthening of synaptic transmission that makes the new response progressively easier to initiate).</p>
+          <p class="science-body">Older pathways weaken primarily through lack of reinforcement. New pathways strengthen through consistent activation.</p>
+          <p class="science-body">Repetition accumulates.</p>
+          <p class="science-body">The nervous system reduces friction around what is practiced. What requires less friction happens more easily. What happens more easily happens more often.</p>
+          <p class="science-body">Over time, frequency begins to feel like identity.</p>
+          <p class="science-body science-closing">The same mechanism that automated the old pattern can automate a new one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pull-quote-section">
+    <p class="pull-quote">"Avoidance is efficient for the brain. But efficiency is not always aligned with what you desire."</p>
+
+  </section>
+
+  <section id="community" class="community-section">
+    <p>Ninety days of private work brought you here. Now share it with the people who understand.</p>
+    <a href="community_1.html" class="btn-secondary" style="display:inline-block; margin-top:1.75rem; font-family:var(--serif); font-size:12px; font-weight:400; letter-spacing:0.04em; padding:13px 24px; background:var(--emerald-dark); color:var(--title-cream); border-radius:3px; text-decoration:none; transition:background 0.2s;" onmouseover="this.style.background='#0D0D0D'" onmouseout="this.style.background='#196716'">Enter the community</a>
+  </section>
+
+  <footer id="contact">
+    <p class="footer-follow">Follow MyJournal Community</p>
+    <div class="footer-socials">
+      <a href="https://www.tiktok.com/@myjournalcommunity" target="_blank" rel="noopener" class="footer-social">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#000000"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+        @myjournalcommunity
+      </a>
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="opacity:0.4;">
+        <g stroke="#8B1A1A" stroke-width="0.9" stroke-linecap="round" fill="none">
+          <line x1="20" y1="20" x2="20" y2="8"/><line x1="20" y1="20" x2="28" y2="10"/><line x1="20" y1="20" x2="32" y2="20"/><line x1="20" y1="20" x2="28" y2="30"/><line x1="20" y1="20" x2="20" y2="32"/><line x1="20" y1="20" x2="12" y2="30"/><line x1="20" y1="20" x2="8" y2="20"/><line x1="20" y1="20" x2="12" y2="10"/>
+        </g>
+        <g fill="#8B1A1A"><circle cx="20" cy="7" r="1.5"/><circle cx="29" cy="9" r="1.5"/><circle cx="33" cy="20" r="1.5"/><circle cx="29" cy="31" r="1.5"/><circle cx="20" cy="33" r="1.5"/><circle cx="11" cy="31" r="1.5"/><circle cx="7" cy="20" r="1.5"/><circle cx="11" cy="9" r="1.5"/></g>
+      </svg>
+      <a href="https://www.instagram.com/myjournalcommunity" target="_blank" rel="noopener" class="footer-social">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#f09433"/>
+              <stop offset="25%" style="stop-color:#e6683c"/>
+              <stop offset="50%" style="stop-color:#dc2743"/>
+              <stop offset="75%" style="stop-color:#cc2366"/>
+              <stop offset="100%" style="stop-color:#bc1888"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="url(#ig-grad)"/>
+          <circle cx="12" cy="12" r="4" stroke="url(#ig-grad)"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="url(#ig-grad)" stroke="none"/>
+        </svg>
+        @myjournalcommunity
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 MyJournal Community. All rights reserved.</span>
+    </div>
+  </footer>
+
+
+<script>
+  function syncJournalHeight() {
+    var text = document.querySelector('.journal-text');
+    var visual = document.querySelector('.journal-visual');
+    if (text && visual) {
+      visual.style.height = text.offsetHeight + 'px';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', syncJournalHeight);
+  window.addEventListener('resize', syncJournalHeight);
+</script>
+</body>
+</html>
