@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Das Journal — MyJournal Community</title>
+  <meta name="description" content="Dein begleitetes 12-Wochen-Journal, aufgebaut auf Erkenntnissen der Verhaltensforschung.">
+      <link rel="alternate" hreflang="en" href="https://myjournal.community/journal">
+  <link rel="alternate" hreflang="de" href="https://myjournal.community/de/journal">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --emerald-dark: #196716;
+      --emerald-mid: #289527;
+      --cream: #F5F0E8;
+      --cream-dark: #DDD4C0;
+      --near-black: #0D0D0D;
+      --dark-gray-green: #3A4A3D;
+      --warm-taupe: #7A6E62;
+      --title-cream: #E1D9CB;
+      --serif: 'Merriweather', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--serif);
+      font-weight: 300;
+      background: var(--cream);
+      color: var(--near-black);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* LILY */
+    .page-lily {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120vh;
+      height: 120vh;
+      opacity: 0.015;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .page-lily svg { width: 100%; height: 100%; }
+    nav, main, footer { position: relative; z-index: 1; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      border-bottom: 0.5px solid rgba(27,30,29,0.15);
+      position: sticky;
+      top: 0;
+      background: var(--cream);
+      z-index: 100;
+    }
+    .nav-logo { font-size: 12px; letter-spacing: 0.08em; font-style: italic; color: var(--near-black); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.05em; color: var(--dark-gray-green); transition: color 0.2s; font-weight: 300; }
+    .nav-links a:hover { color: var(--near-black); }
+    .nav-links a.active { color: var(--near-black); border-bottom: 0.5px solid var(--near-black); padding-bottom: 1px; }
+
+    /* HERO SECTION */
+    .hero-wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 7rem 0 0;
+    }
+
+    .hero-columns {
+      display: flex;
+      gap: 6rem;
+      align-items: flex-start;
+    }
+
+    .hero-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: visible;
+      padding-bottom: 3rem;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--emerald-dark);
+      letter-spacing: -0.01em;
+      padding-bottom: 2rem;
+      border-bottom: 0.5px solid rgba(27,30,29,0.15);
+      flex-shrink: 0;
+    }
+
+    .hero-paragraphs {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: 2rem;
+      flex: 1;
+    }
+
+    .hero-paragraphs p {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--near-black);
+      text-align: justify;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      margin-top: 2.5rem;
+      margin-bottom: 6rem;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      color: var(--emerald-dark);
+      font-weight: 400;
+    }
+    .hero-cta:hover { color: var(--near-black); }
+
+    .hero-cover {
+      flex-shrink: 0;
+      width: 400px;
+    }
+
+    .hero-cover img {
+      width: 100%;
+      display: block;
+      border-radius: 2px;
+    }
+
+    .hero-bottom {
+      border-bottom: 0.5px solid rgba(27,30,29,0.15);
+    }
+
+    /* ZIPPER SECTION */
+    .zipper-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 4rem 8rem;
+      border-top: 0.5px solid rgba(27,30,29,0.15);
+    }
+
+    .zipper-section-title {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-style: normal;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--near-black);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .zipper-section-subtitle {
+      font-size: 12px;
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--warm-taupe);
+      margin-bottom: 4rem;
+    }
+
+    .zipper-phase {
+      display: flex;
+      gap: 5rem;
+      align-items: flex-start;
+      margin-bottom: 5rem;
+    }
+
+    .zipper-phase:last-child { margin-bottom: 0; }
+
+    .zipper-phase.reverse { flex-direction: row-reverse; }
+
+    .zipper-image-col {
+      flex: 0 0 300px;
+    }
+
+    .zipper-image-col img {
+      width: 100%;
+      display: block;
+      border-radius: 2px;
+      box-shadow: 0 2px 14px rgba(13,13,13,0.12);
+    }
+
+    .zipper-phase-label {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--near-black);
+      margin-bottom: 1rem;
+    }
+
+    .zipper-text-col {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .zipper-text-col p {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--near-black);
+      text-align: justify;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+    }
+
+    .zipper-text-col p + p {
+      margin-top: 1.5rem;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      border-top: 0.5px solid rgba(27,30,29,0.15);
+    }
+    .footer-follow { font-size: 16px; font-weight: 400; letter-spacing: 0.01em; color: #0D0D0D; margin-bottom: 0.5rem; }
+    .footer-socials { display: flex; align-items: center; gap: 2rem; }
+    .footer-social { font-size: 14px; font-weight: 300; letter-spacing: 0.02em; color: var(--near-black); transition: opacity 0.2s; display: flex; align-items: center; gap: 7px; }
+    .footer-social:hover { opacity: 0.7; }
+    .footer-bottom { width: 100%; display: flex; justify-content: center; align-items: center; padding-top: 1.5rem; border-top: 0.5px solid rgba(27,30,29,0.12); }
+    .footer-copy { font-size: 10px; letter-spacing: 0.04em; color: var(--warm-taupe); font-weight: 300; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero-wrap { padding: 4rem 1.5rem 0; }
+      .hero-columns { flex-direction: column-reverse; gap: 2.5rem; }
+      .hero-text { height: auto !important; }
+      .hero-paragraphs { height: auto !important; justify-content: flex-start; gap: 1.5rem; }
+      .hero-cover { width: 100%; max-width: 340px; margin: 0 auto; }
+      .hero-title { font-size: 28px; }
+      .hero-cta { margin-bottom: 4rem; }
+      .zipper-section { padding: 3rem 1.5rem 5rem; }
+      .zipper-phase { flex-direction: column !important; gap: 1.5rem; margin-bottom: 3.5rem; }
+      .zipper-image-col { flex: none !important; width: 100% !important; }
+      .zipper-text-col p { font-size: 16px; }
+      .footer-socials { flex-direction: column; align-items: center; gap: 1rem; }
+      footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+  
+    .lang-switch { display: flex; align-items: center; gap: 0.45rem; font-size: 11px; letter-spacing: 0.08em; color: var(--warm-taupe); margin-left: 2.5rem; }
+    .lang-switch a { color: var(--dark-gray-green); transition: color 0.2s; }
+    .lang-switch a:hover { color: var(--near-black); }
+    .lang-switch a.active { color: var(--near-black); border-bottom: 0.5px solid var(--near-black); padding-bottom: 1px; }
+    .nav-right { display: flex; align-items: center; }
+  </style>
+</head>
+<body>
+
+  <div class="page-lily">
+    <svg viewBox="0 0 78.94 53.02" xmlns="http://www.w3.org/2000/svg">
+<path fill="none" stroke="#1D1D1B" stroke-width="0.43" stroke-linecap="round" d="M 41.21,51.99 C 46.13,43.21 54.82,36.29 65.53,32.62"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.40" stroke-linecap="round" d="M 41.18,51.30 C 41.37,50.63 41.57,50.65 41.75,49.96 C 41.82,49.72 41.89,49.46 41.96,49.22 C 44.65,39.05 47.04,27.28 46.99,15.67"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.50" stroke-linecap="round" d="M 41.21,51.99 C 38.74,41.58 34.41,30.45 31.15,18.83"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.50" stroke-linecap="round" d="M 41.10,51.36 C 35.14,43.29 26.58,39.43 15.61,38.88"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.51" stroke-linecap="round" d="M 41.21,51.99 C 36.22,48.05 23.23,47.96 7.68,50.56"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.45" stroke-linecap="round" d="M 41.22,52.02 C 45.37,48.37 56.32,48.88 69.57,50.96"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.41" stroke-linecap="round" d="M 41.29,51.45 C 47.82,39.18 58.47,24.63 68.59,11.28"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.46" stroke-linecap="round" d="M 41.15,51.15 C 44.65,36.96 45.87,21.24 45.56,4.35"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.51" stroke-linecap="round" d="M 41.15,51.15 C 39.49,36.04 36.36,20.60 33.79,2.59"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.50" stroke-linecap="round" d="M 41.15,51.15 C 37.87,45.67 34.15,40.26 30.12,34.64 C 25.15,27.74 18.91,21.62 13.19,13.60"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.45" stroke-linecap="round" d="M 41.10,51.53 C 30.47,44.63 17.87,40.00 2.00,36.82"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.40" stroke-linecap="round" d="M 41.31,51.62 C 51.16,46.51 63.23,42.85 77.03,41.32"/>
+<path fill="#1D1D1B" d="M 67.93,11.97 C 68.34,12.37 68.97,12.37 69.33,11.99 C 69.70,11.61 69.66,10.98 69.25,10.59 C 68.83,10.19 68.20,10.18 67.84,10.57 C 67.47,10.95 67.51,11.58 67.93,11.97 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.24" stroke-linecap="round" d="M 67.95,11.95 C 68.34,12.36 68.95,12.39 69.30,12.02 C 69.66,11.65 69.62,11.02 69.23,10.60 C 68.83,10.19 68.22,10.17 67.87,10.54 C 67.51,10.91 67.55,11.54 67.95,11.95"/>
+<path fill="#1D1D1B" d="M 45.69,5.29 C 46.24,5.22 46.63,4.73 46.56,4.21 C 46.49,3.68 45.98,3.32 45.43,3.40 C 44.88,3.47 44.49,3.96 44.56,4.48 C 44.63,5.01 45.14,5.37 45.69,5.29 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.29" stroke-linecap="round" d="M 45.69,5.29 C 46.24,5.20 46.63,4.71 46.56,4.19 C 46.49,3.67 45.98,3.32 45.43,3.40 C 44.88,3.49 44.49,3.97 44.56,4.49 C 44.63,5.01 45.14,5.37 45.69,5.29"/>
+<path fill="#1D1D1B" d="M 33.88,2.97 C 34.43,2.90 34.83,2.42 34.77,1.90 C 34.71,1.38 34.21,1.00 33.66,1.06 C 33.10,1.13 32.70,1.60 32.76,2.13 C 32.82,2.65 33.32,3.03 33.88,2.97 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.45" stroke-linecap="round" d="M 33.87,2.96 C 34.43,2.89 34.83,2.41 34.77,1.89 C 34.71,1.37 34.21,1.00 33.66,1.07 C 33.10,1.14 32.71,1.62 32.76,2.14 C 32.82,2.66 33.32,3.03 33.87,2.96"/>
+<path fill="#1D1D1B" d="M 13.21,13.65 C 13.67,13.32 13.78,12.70 13.47,12.27 C 13.15,11.85 12.53,11.77 12.07,12.11 C 11.62,12.45 11.50,13.07 11.82,13.49 C 12.13,13.92 12.76,13.99 13.21,13.65 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.69" stroke-linecap="round" d="M 13.20,13.63 C 13.64,13.28 13.75,12.65 13.44,12.24 C 13.13,11.82 12.53,11.77 12.09,12.13 C 11.65,12.49 11.54,13.11 11.85,13.53 C 12.15,13.94 12.76,13.99 13.20,13.63"/>
+<path fill="#1D1D1B" d="M 2.91,36.97 C 3.00,36.39 2.66,35.86 2.16,35.78 C 1.66,35.70 1.18,36.10 1.09,36.68 C 1.00,37.26 1.33,37.79 1.83,37.87 C 2.34,37.95 2.82,37.54 2.91,36.97 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.45" stroke-linecap="round" d="M 2.90,36.96 C 2.98,36.39 2.65,35.86 2.15,35.78 C 1.65,35.70 1.18,36.10 1.10,36.68 C 1.02,37.26 1.35,37.79 1.85,37.87 C 2.35,37.95 2.82,37.54 2.90,36.96"/>
+<path fill="#1D1D1B" d="M 76.08,41.23 C 76.11,41.81 76.55,42.26 77.06,42.22 C 77.56,42.19 77.94,41.69 77.90,41.11 C 77.86,40.53 77.42,40.08 76.92,40.12 C 76.42,40.15 76.04,40.65 76.08,41.23 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.48" stroke-linecap="round" d="M 76.08,41.23 C 76.12,41.81 76.55,42.25 77.05,42.22 C 77.56,42.19 77.93,41.69 77.90,41.11 C 77.86,40.53 77.43,40.08 76.92,40.12 C 76.42,40.15 76.04,40.65 76.08,41.23"/>
+</svg>
+  </div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">MyJournal Community</a>
+    <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="journal.html" class="active">Das Journal</a></li>
+      <li><a href="community.html">Die Community</a></li>
+      <li><a href="about.html">Über uns</a></li>
+      <li><a href="contact.html">Kontakt</a></li>
+    </ul>
+    <div class="lang-switch"><a href="../journal.html" hreflang="en">EN</a><span>|</span><a href="journal.html" class="active" hreflang="de">DE</a></div>
+    </div>
+  </nav>
+
+  <main>
+
+    <div class="hero-wrap">
+      <div class="hero-columns">
+        <div class="hero-text" id="hero-text">
+          <h1 class="hero-title">Was bleibt,<<br>entscheidest du.<</h1>
+          <div class="hero-paragraphs" id="hero-paragraphs">
+            <p>Dieses Journal ist für alle, die genug haben von Journalen, die sie nur nach drei Dingen fragen, für die sie dankbar sind. Dankbarkeit tut gut. Um alte Muster zu verändern, braucht es aber mehr.</p>
+            <p>Zwölf Wochen lang knöpfst du dir die Muster vor, die dich zurückhalten, eines nach dem anderen, und am Ende siehst du schwarz auf weiß, was sich verändert hat.</p>
+            <p>Du musst dir dafür nicht viel Zeit nehmen, und es gibt keinen Druck, eine perfekte Seite abzuliefern. Du kannst es morgens um sechs aufschlagen, um Mitternacht oder in den zehn Minuten, bevor der Tag wieder alles von dir verlangt.</p>
+          </div>
+          <!-- AMAZON LINK: replace the address below with the book's Amazon page -->
+          <a href="https://www.amazon.de" target="_blank" rel="noopener" style="display:block; margin-top:2.5rem; font-family:var(--serif); font-size:13px; font-weight:400; letter-spacing:0.04em; padding:13px 24px; background:#196716; color:#E1D9CB; border-radius:3px; text-decoration:none; transition:background 0.2s; text-align:center;" onmouseover="this.style.background='#0D0D0D'" onmouseout="this.style.background='#196716'">Hol dir dein Journal</a>
+        </div>
+        <div class="hero-cover">
+          <img src="journal_cover_de.jpg" alt="Was bleibt, entscheidest du. Dein begleitetes 12-Wochen-Journal" id="cover-img">
+        </div>
+      </div>
+      <div style="border-bottom: 0.5px solid rgba(27,30,29,0.15); margin-top: 5rem;"></div>
+    </div>
+
+    <div class="zipper-section">
+
+      <p class="zipper-section-title">Die Methode</p>
+      <p class="zipper-section-subtitle">Aus dem Journal</p>
+
+      <!-- Phase 1: image left, text right -->
+      <div class="zipper-phase">
+        <div class="zipper-image-col">
+          <img src="phase_1.png" alt="Deine Muster sehen — Woche 1, Wochenmuster">
+        </div>
+        <div class="zipper-text-col">
+          <p class="zipper-phase-label">Phase 1 — Deine Muster sehen</p>
+          <p>Das Journal begleitet dich durch vier Phasen. Am Ende steht dein 12-Wochen-Rückblick.</p>
+          <p>In den Wochen 1–3 lernst du, ein Muster zu bemerken, während es passiert, und nicht erst Stunden später. Das kann der Anruf sein, den du schon wieder hinauszögerst, oder die Enge in der Brust, kurz bevor du im Meeting etwas sagst. Mit jedem Mal merkst du deutlicher, wie sehr sich das Muster durch Wiederholung eingeschliffen hat. Und was du klarer sehen kannst, kannst du auch gezielter verändern.</p>
+          <p>Jede Woche hat denselben Rhythmus: fünf Tage mit Fragen, zwei Tage für alles, was dich gerade beschäftigt, und am Ende ein Rückblick. Wenn dir mal die Motivation fehlt, gibt dir diese feste Struktur Halt.</p>
+        </div>
+      </div>
+
+      <!-- Phase 2: image right, text left -->
+      <div class="zipper-phase reverse">
+        <div class="zipper-image-col">
+          <img src="phase_2.png" alt="Verstehen, was sie antreibt — Woche 5, Geschichte">
+        </div>
+        <div class="zipper-text-col">
+          <p class="zipper-phase-label">Phase 2 — Verstehen, was sie antreibt</p>
+          <p>In den Wochen 4–7 schaust du dir an, was das Muster am Leben hält. Du hörst deine innere Stimme, die wegerklärt, was dein Bauchgefühl längst weiß. Du spürst, wie dir die Angst, jemanden zu enttäuschen, den ganzen Tag verderben kann, obwohl noch niemand ein Wort gesagt hat. Du erkennst die Ausreden, mit denen du dich klein hältst, und dir wird bewusst, dass du auf der Stelle trittst, wo du eigentlich aufblühen könntest. Und du merkst, wie aus „Nur dieses eine Mal“ ganz leise jedes Mal wird. Wenn du ein Muster so gut verstehst, bestimmt es nicht länger mehr, was du tust. Du entscheidest wieder selbst.</p>
+        </div>
+      </div>
+
+      <!-- Phase 3: image left, text right -->
+      <div class="zipper-phase">
+        <div class="zipper-image-col">
+          <img src="phase_3.png" alt="Neue Fähigkeiten üben — Woche 8, Rückblick">
+        </div>
+        <div class="zipper-text-col">
+          <p class="zipper-phase-label">Phase 3 — Neue Fähigkeiten üben</p>
+          <p>In den Wochen 8–11 trägt die Arbeit der ersten Wochen Früchte. Mit allem, was du bis hierher aufgebaut hast, hörst du auf zu analysieren und fängst an zu üben. Du bleibst im schwierigen Gespräch ein bisschen länger, auch wenn du am liebsten sofort gehen würdest. Du lernst, dass Herzrasen eine normale physiologische Reaktion ist und nicht immer Lebensgefahr bedeutet. Jedes Versprechen, das du dir gibst und auch hältst, stärkt dein Vertrauen in dich. Mit der Zeit kannst du auch unterscheiden zwischen dem Aufschieben, das deinen Ideen Zeit zum Reifen gibt, und dem, das wartet, bis dir eine Krise die Entscheidung abnimmt. Und irgendwann merkst du: Du musst dich nicht bereit fühlen, um anzufangen. Du fängst klein an und siehst zu, wie dein Leben in Bewegung kommt.</p>
+        </div>
+      </div>
+
+      <!-- Phase 4: image right, text left -->
+      <div class="zipper-phase reverse">
+        <div class="zipper-image-col">
+          <img src="phase_4.png" alt="Vom Wissen ins Werden — Woche 12, Tag 2">
+        </div>
+        <div class="zipper-text-col">
+          <p class="zipper-phase-label">Phase 4 — Vom Wissen ins Werden</p>
+          <p>Wenn du in Woche 12 ankommst, hast du elf Wochen lang trainiert und Fähigkeiten aufgebaut, die dir im Alltag wirklich helfen. Dein Toleranzfenster ist größer geworden: Vieles, was dich früher überwältigt hat, kannst du heute bewältigen. Du spürst genauer in dich hinein und kannst benennen, was du fühlst. Wenn ein altes Muster anläuft, kannst du es unterbrechen, bevor es dich ganz mitnimmt. Du kannst sagen, was du meinst, und dabei gelassen bleiben, auch wenn du nicht weißt, wie es bei deinem Gegenüber ankommt. Und mit jeder Wiederholung festigen sich die neuen Gewohnheiten, die du behalten willst. Das alles ist längst keine Theorie mehr, du hast es selbst erlebt. In Woche 12 lässt du andere sehen, wie du dich verändert hast, und merkst, wie viel davon schon fest zu dir gehört.</p>
+        </div>
+      </div>
+
+      <!-- Phase 5: image left, text right -->
+      <div class="zipper-phase">
+        <div class="zipper-image-col">
+          <img src="phase_5.png" alt="Was zwölf Wochen zeigen — Die Fähigkeiten, die du aufgebaut hast">
+        </div>
+        <div class="zipper-text-col">
+          <p class="zipper-phase-label">Dein 12-Wochen-Rückblick — Was zwölf Wochen zeigen</p>
+          <p>Am Ende jeder Woche kreist du für drei Dimensionen eine Zahl ein. Sichtbarkeit zeigt, wie klar du dein Muster gesehen hast. Umsetzung zeigt, was du getan hast, als du es gesehen hast. Toleranz zeigt, wie lange du beim Unbehagen bleiben konntest. In deinem 12-Wochen-Rückblick ergeben diese Zahlen ein Bild davon, wie du unter Druck reagierst. Deine niedrigste Summe zeigt dir, welches von drei Grundmustern dich bisher gesteuert hat, deine höchste, wo deine Arbeit schon greift. So weißt du genau, worauf du dich in den nächsten 30 Tagen und darüber hinaus konzentrierst.</p>
+          <p>Für die Methoden hinter diesen Seiten bezahlst du sonst Stunde um Stunde, beim Coach oder in der Therapie. Hier hältst du sie in der Hand, und alles, was du dazu brauchst, ist ein Stift.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    // Height sync disabled — text column height is free
+  </script>
+
+  <footer id="contact">
+    <p class="footer-follow">Folge MyJournal Community</p>
+    <div class="footer-socials">
+      <a href="https://www.tiktok.com/@myjournalcommunity" target="_blank" rel="noopener" class="footer-social">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#000000"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+        @myjournalcommunity
+      </a>
+      <svg viewBox="-3 -3 84.94 59.02" xmlns="http://www.w3.org/2000/svg" width="20" height="14" style="opacity:0.4;"><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 46.13,43.21 54.82,36.29 65.53,32.62"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.18,51.30 C 41.37,50.63 41.57,50.65 41.75,49.96 C 41.82,49.72 41.89,49.46 41.96,49.22 C 44.65,39.05 47.04,27.28 46.99,15.67"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 38.74,41.58 34.41,30.45 31.15,18.83"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.10,51.36 C 35.14,43.29 26.58,39.43 15.61,38.88"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 36.22,48.05 23.23,47.96 7.68,50.56"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.22,52.02 C 45.37,48.37 56.32,48.88 69.57,50.96"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.29,51.45 C 47.82,39.18 58.47,24.63 68.59,11.28"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 44.65,36.96 45.87,21.24 45.56,4.35"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 39.49,36.04 36.36,20.60 33.79,2.59"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 37.87,45.67 34.15,40.26 30.12,34.64 C 25.15,27.74 18.91,21.62 13.19,13.60"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.10,51.53 C 30.47,44.63 17.87,40.00 2.00,36.82"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.31,51.62 C 51.16,46.51 63.23,42.85 77.03,41.32"/><circle cx="68.59" cy="11.27" r="2.8" fill="#8B1A1A"/><circle cx="45.56" cy="4.34" r="2.8" fill="#8B1A1A"/><circle cx="33.77" cy="2.01" r="2.8" fill="#8B1A1A"/><circle cx="12.64" cy="12.88" r="2.8" fill="#8B1A1A"/><circle cx="2.00" cy="36.83" r="2.8" fill="#8B1A1A"/><circle cx="76.99" cy="41.17" r="2.8" fill="#8B1A1A"/></svg>
+      <a href="https://www.instagram.com/myjournalcommunity" target="_blank" rel="noopener" class="footer-social">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#f09433"/>
+              <stop offset="25%" style="stop-color:#e6683c"/>
+              <stop offset="50%" style="stop-color:#dc2743"/>
+              <stop offset="75%" style="stop-color:#cc2366"/>
+              <stop offset="100%" style="stop-color:#bc1888"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="url(#ig-grad)"/>
+          <circle cx="12" cy="12" r="4" stroke="url(#ig-grad)"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="url(#ig-grad)" stroke="none"/>
+        </svg>
+        @myjournalcommunity
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 MyJournal Community. Alle Rechte vorbehalten.</span>
+    </div>
+  </footer>
+
+</body>
+</html>

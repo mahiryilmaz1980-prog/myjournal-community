@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — MyJournal Community</title>
   <meta name="description" content="Why we built the journal. And why the community followed.">
+    <link rel="alternate" hreflang="en" href="https://myjournal.community/about">
+  <link rel="alternate" hreflang="de" href="https://myjournal.community/de/about">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
@@ -154,6 +156,12 @@
       footer { padding-left: 1.5rem; padding-right: 1.5rem; }
       .footer-socials { flex-direction: column; align-items: center; gap: 1rem; }
     }
+  
+    .lang-switch { display: flex; align-items: center; gap: 0.45rem; font-size: 11px; letter-spacing: 0.08em; color: var(--warm-taupe); margin-left: 2.5rem; }
+    .lang-switch a { color: var(--dark-gray-green); transition: color 0.2s; }
+    .lang-switch a:hover { color: var(--near-black); }
+    .lang-switch a.active { color: var(--near-black); border-bottom: 0.5px solid var(--near-black); padding-bottom: 1px; }
+    .nav-right { display: flex; align-items: center; }
   </style>
 </head>
 <body>
@@ -189,12 +197,15 @@
 
   <nav>
     <a href="index.html" class="nav-logo">MyJournal Community</a>
+    <div class="nav-right">
     <ul class="nav-links">
       <li><a href="journal.html">The Journal</a></li>
       <li><a href="community.html">Community</a></li>
       <li><a href="about.html" class="active">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
+    <div class="lang-switch"><a href="about.html" class="active" hreflang="en">EN</a><span>|</span><a href="de/about.html" hreflang="de">DE</a></div>
+    </div>
   </nav>
 
   <main>
@@ -206,9 +217,9 @@
 
       <p>We built a 12-week guided journal because the gap between knowing and doing is one of the most well-documented phenomena in behavioral science, and one of the least well-served by the tools available to most people. The knowledge exists in abundance. Access to most of it is the problem.</p>
 
-      <p>Cost. Availability. Geography. Stigma. These are the reasons people sit with the full awareness of what they need to change and still cannot reach the support that would help them do it. They decide the tools are not for them. That change is for other people. People who have more time, more money, more access.</p>
+      <p>Cost. Time. Availability. Stigma. These are the reasons people sit with the full awareness of what they need to change and still cannot reach the support that would help them do it. They decide the tools are not for them. That change is for other people. People who have more time, more money, more access.</p>
 
-      <p>Drawing on behavioral science and years of working alongside coaches and facilitators, we built the journal to change that, and to put this kind of support into a book anyone can afford and open whenever they need it. It respects your time. It asks only for honesty. And it assumes the intelligence of the person holding it.</p>
+      <p>Drawing on behavioral science and years of working alongside psychologists, social workers and education PhDs who coach and facilitate, we built the journal to change that, and to put this kind of support into a book anyone can afford and open whenever they need it. It respects your time. It asks only for honesty. And it assumes the intelligence of the person holding it.</p>
 
       <div class="about-pull">
         <p>We built the community because this kind of work changes how people see themselves, and that change wants to be shared with others who would understand.</p>

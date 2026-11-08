@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyJournal Community — Was bleibt, entscheidest du.</title>
+  <meta name="description" content="Ein Ort für die Arbeit an dir selbst. Und für die Menschen, die sie machen.">
+      <link rel="alternate" hreflang="en" href="https://myjournal.community/">
+  <link rel="alternate" hreflang="de" href="https://myjournal.community/de/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --emerald-dark: #196716;
+      --emerald-mid: #289527;
+      --cream: #F5F0E8;
+      --cream-dark: #DDD4C0;
+      --near-black: #0D0D0D;
+      --dark-gray-green: #3A4A3D;
+      --warm-taupe: #7A6E62;
+      --title-cream: #E1D9CB;
+      --serif: 'Merriweather', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--serif);
+      background: var(--cream);
+      color: var(--near-black);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      border-bottom: 0.5px solid rgba(27,30,29,0.15);
+      position: sticky;
+      top: 0;
+      background: var(--cream);
+      z-index: 100;
+    }
+
+    .nav-logo { font-size: 12px; letter-spacing: 0.08em; font-style: italic; color: var(--near-black); }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      color: var(--dark-gray-green);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--near-black); }
+
+    /* HERO */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 4rem 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 0.5px solid rgba(27,30,29,0.15);
+    }
+
+    .hero-headline {
+      font-size: clamp(36px, 5vw, 62px);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--near-black);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 62px);
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--near-black);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+      max-width: 700px;
+    }
+
+    .hero-arc {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 3rem;
+      margin-top: 0.25rem;
+    }
+    .arc-word {
+      font-size: clamp(13px, 1.6vw, 16px);
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: var(--warm-taupe);
+      text-transform: uppercase;
+    }
+
+    /* FORK */
+    .paths {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 900px;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    .path {
+      padding: 3rem 2.5rem;
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s;
+      position: relative;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      border: 0.5px solid rgba(27,30,29,0.15);
+      text-align: left;
+    }
+
+    .path-done { background: rgba(245,240,232,0.6); }
+    .path-done:hover { background: rgba(237,231,219,0.75); border-color: rgba(27,30,29,0.25); }
+    .path-new { background: rgba(245,240,232,0.6); }
+    .path-new:hover { background: rgba(237,231,219,0.75); border-color: rgba(27,30,29,0.25); }
+
+    .path-label {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: var(--warm-taupe);
+      margin-bottom: 1.1rem;
+      display: block;
+    }
+
+    .path-heading {
+      font-size: clamp(15px, 1.7vw, 18px);
+      font-weight: 400;
+      line-height: 1.55;
+      color: #0D0D0D;
+      margin-bottom: 0.75rem;
+    }
+
+    .path-desc {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #2A2420;
+      margin-bottom: auto;
+      padding-bottom: 2rem;
+    }
+
+    .path-arrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--title-cream);
+      background: var(--emerald-dark);
+      padding: 8px 22px;
+      border-radius: 3px;
+      transition: background 0.2s;
+      align-self: center;
+    }
+    .path:hover .path-arrow {
+      background: var(--near-black);
+    }
+
+    /* SECTIONS */
+    section { padding: 7rem 4rem; border-bottom: 0.5px solid rgba(27,30,29,0.15); }
+    .section-label { font-size: 10px; letter-spacing: 0.16em; color: var(--warm-taupe); margin-bottom: 2rem; display: block; }
+
+    /* PROBLEM */
+    .problem-heading { font-size: clamp(20px, 2.4vw, 28px); font-weight: 400; line-height: 1.4; color: var(--near-black); margin-bottom: 1.5rem; }
+    .problem p { font-size: 17px; font-weight: 300; line-height: 1.95; color: var(--near-black); text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    .problem p + p { margin-top: 1.5rem; }
+
+    /* WHAT THIS IS */
+    .language-section p { font-size: 17px; font-weight: 300; line-height: 1.95; color: var(--near-black); text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    .language-section p + p { margin-top: 1.5rem; }
+    .what-this-is p + p { margin-top: 1.25rem; }
+
+    /* JOURNAL */
+    .journal-section { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .journal-text { display: flex; flex-direction: column; }
+    .journal-visual { height: 480px; overflow: hidden; }
+    .journal-kicker { font-size: 17px; font-weight: 300; line-height: 1.95; color: var(--near-black); margin-bottom: 1.5rem; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    .journal-text h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 400; line-height: 1.1; color: var(--emerald-dark); margin-bottom: 0.4rem; letter-spacing: -0.01em; text-align: center; }
+    .journal-title-rule { border: none; border-top: 0.5px solid var(--emerald-dark); display: block; margin: 0.3rem auto 0.6rem auto; }
+    .journal-subtitle { font-size: clamp(18px, 2vw, 22px); font-weight: 300; font-style: italic; color: var(--emerald-dark); display: block; text-align: left; margin-bottom: 2rem; }
+    .journal-kicker { font-size: 17px; font-weight: 300; line-height: 1.95; color: var(--near-black); margin-bottom: 1.5rem; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    .journal-text p { font-size: 17px; font-weight: 300; line-height: 1.95; color: var(--near-black); margin-bottom: 1.5rem; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    .journal-visual-label { font-size: 10px; letter-spacing: 0.12em; color: var(--warm-taupe); text-align: center; }
+    .science-page { width: 100%; height: 100%; background: #F0EBE1; border: 0.5px solid rgba(27,30,29,0.12); display: flex; flex-direction: column; box-shadow: 2px 3px 14px rgba(27,30,29,0.09); }
+    .science-page-inner { padding: 1.6rem 2rem 1.5rem; overflow-y: auto; height: 100%; }
+    .science-week-label { font-size: 8px; letter-spacing: 0.18em; color: var(--warm-taupe); margin-bottom: 0.6rem; flex-shrink: 0; }
+    .science-title { font-size: clamp(15px, 1.6vw, 20px); font-weight: 400; color: var(--near-black); line-height: 1.2; margin-bottom: 0.6rem; letter-spacing: -0.01em; flex-shrink: 0; }
+    .science-subtitle { display: none; }
+    .science-rule { height: 0.5px; background: rgba(27,30,29,0.2); margin-bottom: 0.9rem; flex-shrink: 0; }
+    .science-body { font-size: clamp(10px, 1.05vw, 13px); font-weight: 300; line-height: 1.8; color: var(--near-black); margin-bottom: 0.6rem; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    .science-divider { height: 0.5px; background: rgba(27,30,29,0.1); margin: 0.9rem 0; flex-shrink: 0; }
+    .science-closing { color: #3A4A3D; }
+    .science-page-number { font-size: 8px; letter-spacing: 0.1em; color: var(--warm-taupe); margin-top: auto; padding-top: 0.75rem; text-align: center; flex-shrink: 0; }
+
+    /* BTN */
+    .btn-secondary {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--dark-gray-green);
+      border-bottom: 0.5px solid var(--dark-gray-green);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { color: var(--near-black); border-color: var(--near-black); }
+
+    /* PULL QUOTE */
+    .pull-quote-section { border-bottom: 0.5px solid rgba(27,30,29,0.15); }
+    .pull-quote-section .section-label { color: var(--warm-taupe); }
+    .pull-quote { font-size: clamp(16px, 2.2vw, 21px); font-weight: 300; font-style: italic; line-height: 1.85; color: var(--near-black); max-width: 660px; border-left: 4px solid var(--emerald-mid); padding-left: 2rem; margin-bottom: 1.75rem; }
+    .pull-link { font-size: 12px; letter-spacing: 0.06em; color: var(--warm-taupe); border-bottom: 0.5px solid rgba(27,30,29,0.2); padding-bottom: 2px; transition: color 0.2s; }
+    .pull-link:hover { color: var(--near-black); }
+
+    /* COMMUNITY */
+    .community-section h2 { font-size: clamp(20px, 2.6vw, 30px); font-weight: 300; font-style: italic; line-height: 1.4; color: var(--near-black); max-width: 520px; margin-bottom: 1.75rem; }
+    .community-section p { font-size: 17px; font-weight: 300; line-height: 1.95; color: var(--near-black); }
+    .community-section p + p { margin-top: 1.25rem; }
+    .community-section .btn-secondary { margin-top: 1.75rem; }
+
+    /* EMAIL */
+    .email-section h3 { font-size: 17px; font-weight: 300; line-height: 1.75; color: var(--near-black); max-width: 100%; margin-bottom: 2rem; font-style: normal; }
+    .email-form { display: flex; max-width: 440px; }
+    .email-form input { flex: 1; font-family: var(--serif); font-size: 13px; font-weight: 300; padding: 13px 16px; background: transparent; border: 0.5px solid rgba(27,30,29,0.3); border-right: none; color: var(--near-black); outline: none; transition: border-color 0.2s; }
+    .email-form input::placeholder { color: var(--warm-taupe); }
+    .email-form input:focus { border-color: var(--emerald-mid); }
+    .email-form button { font-family: var(--serif); font-size: 12px; font-weight: 400; letter-spacing: 0.04em; padding: 13px 20px; background: var(--emerald-dark); color: var(--title-cream); border: none; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+    .email-form button:hover { background: var(--near-black); }
+
+    /* FOOTER */
+    footer { padding: 2.5rem 4rem; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+    .footer-logo { font-size: 12px; font-style: italic; color: var(--warm-taupe); }
+    .footer-follow { font-size: 16px; font-weight: 400; letter-spacing: 0.01em; color: #0D0D0D; margin-bottom: 0.5rem; }
+    .footer-socials { display: flex; align-items: center; gap: 2rem; }
+    .footer-social { font-size: 14px; font-weight: 400; letter-spacing: 0.02em; color: var(--near-black); transition: opacity 0.2s; display: flex; align-items: center; gap: 7px; text-decoration: none; }
+    .footer-social:hover { opacity: 0.7; }
+    .footer-bottom { width: 100%; display: flex; justify-content: center; align-items: center; padding-top: 1.5rem; border-top: 0.5px solid rgba(27,30,29,0.12); }
+    .footer-copy { font-size: 10px; letter-spacing: 0.04em; color: var(--warm-taupe); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero, section, .accent-break, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .hero { padding-top: 4rem; padding-bottom: 4rem; min-height: 80vh; }
+      .hero-arc { flex-direction: column; align-items: center; gap: 0.75rem; }
+      .hero-arc .arc-lily { display: none; }
+      .arc-word { letter-spacing: 0.12em; font-size: 11px; }
+      .arc-word::before { content: '✽'; color: #8B1A1A; opacity: 0.4; margin-right: 0.6em; font-size: 14px; }
+      .paths { grid-template-columns: 1fr; gap: 1rem; }
+      .journal-visual { display: block; height: 300px; }
+      .journal-section { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pull-quote { padding-left: 1.25rem; font-size: 17px; }
+      .email-form { flex-direction: column; max-width: 100%; }
+      .email-form input { border-right: 0.5px solid rgba(27,30,29,0.3); border-bottom: none; }
+      .community-section h2 { font-size: 22px; }
+      .footer-socials { flex-direction: column; align-items: center; gap: 1rem; }
+    }
+  
+    .page-lily {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120vh;
+      height: 120vh;
+      opacity: 0.015;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .page-lily svg {
+      width: 100%;
+      height: 100%;
+    }
+    nav, .hero, section, .accent-break, footer {
+      position: relative;
+      z-index: 1;
+    }
+  
+    .lang-switch { display: flex; align-items: center; gap: 0.45rem; font-size: 11px; letter-spacing: 0.08em; color: var(--warm-taupe); margin-left: 2.5rem; }
+    .lang-switch a { color: var(--dark-gray-green); transition: color 0.2s; }
+    .lang-switch a:hover { color: var(--near-black); }
+    .lang-switch a.active { color: var(--near-black); border-bottom: 0.5px solid var(--near-black); padding-bottom: 1px; }
+    .nav-right { display: flex; align-items: center; }
+  </style>
+</head>
+<body>
+
+  
+  <div class="page-lily">
+    <svg viewBox="0 0 78.94 53.02" xmlns="http://www.w3.org/2000/svg">
+<path fill="none" stroke="#1D1D1B" stroke-width="0.43" stroke-linecap="round" d="M 41.21,51.99 C 46.13,43.21 54.82,36.29 65.53,32.62"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.40" stroke-linecap="round" d="M 41.18,51.30 C 41.37,50.63 41.57,50.65 41.75,49.96 C 41.82,49.72 41.89,49.46 41.96,49.22 C 44.65,39.05 47.04,27.28 46.99,15.67"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.50" stroke-linecap="round" d="M 41.21,51.99 C 38.74,41.58 34.41,30.45 31.15,18.83"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.50" stroke-linecap="round" d="M 41.10,51.36 C 35.14,43.29 26.58,39.43 15.61,38.88"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.51" stroke-linecap="round" d="M 41.21,51.99 C 36.22,48.05 23.23,47.96 7.68,50.56"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.45" stroke-linecap="round" d="M 41.22,52.02 C 45.37,48.37 56.32,48.88 69.57,50.96"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.41" stroke-linecap="round" d="M 41.29,51.45 C 47.82,39.18 58.47,24.63 68.59,11.28"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.46" stroke-linecap="round" d="M 41.15,51.15 C 44.65,36.96 45.87,21.24 45.56,4.35"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.51" stroke-linecap="round" d="M 41.15,51.15 C 39.49,36.04 36.36,20.60 33.79,2.59"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.50" stroke-linecap="round" d="M 41.15,51.15 C 37.87,45.67 34.15,40.26 30.12,34.64 C 25.15,27.74 18.91,21.62 13.19,13.60"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.45" stroke-linecap="round" d="M 41.10,51.53 C 30.47,44.63 17.87,40.00 2.00,36.82"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.40" stroke-linecap="round" d="M 41.31,51.62 C 51.16,46.51 63.23,42.85 77.03,41.32"/>
+<path fill="#1D1D1B" d="M 67.93,11.97 C 68.34,12.37 68.97,12.37 69.33,11.99 C 69.70,11.61 69.66,10.98 69.25,10.59 C 68.83,10.19 68.20,10.18 67.84,10.57 C 67.47,10.95 67.51,11.58 67.93,11.97 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.24" stroke-linecap="round" d="M 67.95,11.95 C 68.34,12.36 68.95,12.39 69.30,12.02 C 69.66,11.65 69.62,11.02 69.23,10.60 C 68.83,10.19 68.22,10.17 67.87,10.54 C 67.51,10.91 67.55,11.54 67.95,11.95"/>
+<path fill="#1D1D1B" d="M 45.69,5.29 C 46.24,5.22 46.63,4.73 46.56,4.21 C 46.49,3.68 45.98,3.32 45.43,3.40 C 44.88,3.47 44.49,3.96 44.56,4.48 C 44.63,5.01 45.14,5.37 45.69,5.29 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.29" stroke-linecap="round" d="M 45.69,5.29 C 46.24,5.20 46.63,4.71 46.56,4.19 C 46.49,3.67 45.98,3.32 45.43,3.40 C 44.88,3.49 44.49,3.97 44.56,4.49 C 44.63,5.01 45.14,5.37 45.69,5.29"/>
+<path fill="#1D1D1B" d="M 33.88,2.97 C 34.43,2.90 34.83,2.42 34.77,1.90 C 34.71,1.38 34.21,1.00 33.66,1.06 C 33.10,1.13 32.70,1.60 32.76,2.13 C 32.82,2.65 33.32,3.03 33.88,2.97 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.45" stroke-linecap="round" d="M 33.87,2.96 C 34.43,2.89 34.83,2.41 34.77,1.89 C 34.71,1.37 34.21,1.00 33.66,1.07 C 33.10,1.14 32.71,1.62 32.76,2.14 C 32.82,2.66 33.32,3.03 33.87,2.96"/>
+<path fill="#1D1D1B" d="M 13.21,13.65 C 13.67,13.32 13.78,12.70 13.47,12.27 C 13.15,11.85 12.53,11.77 12.07,12.11 C 11.62,12.45 11.50,13.07 11.82,13.49 C 12.13,13.92 12.76,13.99 13.21,13.65 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.69" stroke-linecap="round" d="M 13.20,13.63 C 13.64,13.28 13.75,12.65 13.44,12.24 C 13.13,11.82 12.53,11.77 12.09,12.13 C 11.65,12.49 11.54,13.11 11.85,13.53 C 12.15,13.94 12.76,13.99 13.20,13.63"/>
+<path fill="#1D1D1B" d="M 2.91,36.97 C 3.00,36.39 2.66,35.86 2.16,35.78 C 1.66,35.70 1.18,36.10 1.09,36.68 C 1.00,37.26 1.33,37.79 1.83,37.87 C 2.34,37.95 2.82,37.54 2.91,36.97 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.45" stroke-linecap="round" d="M 2.90,36.96 C 2.98,36.39 2.65,35.86 2.15,35.78 C 1.65,35.70 1.18,36.10 1.10,36.68 C 1.02,37.26 1.35,37.79 1.85,37.87 C 2.35,37.95 2.82,37.54 2.90,36.96"/>
+<path fill="#1D1D1B" d="M 76.08,41.23 C 76.11,41.81 76.55,42.26 77.06,42.22 C 77.56,42.19 77.94,41.69 77.90,41.11 C 77.86,40.53 77.42,40.08 76.92,40.12 C 76.42,40.15 76.04,40.65 76.08,41.23 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.48" stroke-linecap="round" d="M 76.08,41.23 C 76.12,41.81 76.55,42.25 77.05,42.22 C 77.56,42.19 77.93,41.69 77.90,41.11 C 77.86,40.53 77.43,40.08 76.92,40.12 C 76.42,40.15 76.04,40.65 76.08,41.23"/>
+</svg>
+  </div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">MyJournal Community</a>
+    <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="journal.html">Das Journal</a></li>
+      <li><a href="community.html">Die Community</a></li>
+      <li><a href="about.html">Über uns</a></li>
+      <li><a href="contact.html">Kontakt</a></li>
+    </ul>
+    <div class="lang-switch"><a href="../index.html" hreflang="en">EN</a><span>|</span><a href="index.html" class="active" hreflang="de">DE</a></div>
+    </div>
+  </nav>
+
+  <div class="hero">
+
+    <h1 class="hero-headline">MyJournal Community</h1>
+    <div class="hero-arc">
+      <span class="arc-word">Verletzlichkeit</span>
+      <svg viewBox="-3 -3 84.94 59.02" xmlns="http://www.w3.org/2000/svg" width="26" height="18" style="display:inline-block;vertical-align:middle;margin:0 0.75rem;opacity:0.45;"><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 46.13,43.21 54.82,36.29 65.53,32.62"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.18,51.30 C 41.37,50.63 41.57,50.65 41.75,49.96 C 41.82,49.72 41.89,49.46 41.96,49.22 C 44.65,39.05 47.04,27.28 46.99,15.67"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 38.74,41.58 34.41,30.45 31.15,18.83"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.10,51.36 C 35.14,43.29 26.58,39.43 15.61,38.88"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 36.22,48.05 23.23,47.96 7.68,50.56"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.22,52.02 C 45.37,48.37 56.32,48.88 69.57,50.96"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.29,51.45 C 47.82,39.18 58.47,24.63 68.59,11.28"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 44.65,36.96 45.87,21.24 45.56,4.35"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 39.49,36.04 36.36,20.60 33.79,2.59"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 37.87,45.67 34.15,40.26 30.12,34.64 C 25.15,27.74 18.91,21.62 13.19,13.60"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.10,51.53 C 30.47,44.63 17.87,40.00 2.00,36.82"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.31,51.62 C 51.16,46.51 63.23,42.85 77.03,41.32"/><circle cx="68.59" cy="11.27" r="2.8" fill="#8B1A1A"/><circle cx="45.56" cy="4.34" r="2.8" fill="#8B1A1A"/><circle cx="33.77" cy="2.01" r="2.8" fill="#8B1A1A"/><circle cx="12.64" cy="12.88" r="2.8" fill="#8B1A1A"/><circle cx="2.00" cy="36.83" r="2.8" fill="#8B1A1A"/><circle cx="76.99" cy="41.17" r="2.8" fill="#8B1A1A"/></svg>
+      <span class="arc-word">Authentizität</span>
+      <svg viewBox="-3 -3 84.94 59.02" xmlns="http://www.w3.org/2000/svg" width="26" height="18" style="display:inline-block;vertical-align:middle;margin:0 0.75rem;opacity:0.45;"><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 46.13,43.21 54.82,36.29 65.53,32.62"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.18,51.30 C 41.37,50.63 41.57,50.65 41.75,49.96 C 41.82,49.72 41.89,49.46 41.96,49.22 C 44.65,39.05 47.04,27.28 46.99,15.67"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 38.74,41.58 34.41,30.45 31.15,18.83"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.10,51.36 C 35.14,43.29 26.58,39.43 15.61,38.88"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 36.22,48.05 23.23,47.96 7.68,50.56"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.22,52.02 C 45.37,48.37 56.32,48.88 69.57,50.96"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.29,51.45 C 47.82,39.18 58.47,24.63 68.59,11.28"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 44.65,36.96 45.87,21.24 45.56,4.35"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 39.49,36.04 36.36,20.60 33.79,2.59"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 37.87,45.67 34.15,40.26 30.12,34.64 C 25.15,27.74 18.91,21.62 13.19,13.60"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.10,51.53 C 30.47,44.63 17.87,40.00 2.00,36.82"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.31,51.62 C 51.16,46.51 63.23,42.85 77.03,41.32"/><circle cx="68.59" cy="11.27" r="2.8" fill="#8B1A1A"/><circle cx="45.56" cy="4.34" r="2.8" fill="#8B1A1A"/><circle cx="33.77" cy="2.01" r="2.8" fill="#8B1A1A"/><circle cx="12.64" cy="12.88" r="2.8" fill="#8B1A1A"/><circle cx="2.00" cy="36.83" r="2.8" fill="#8B1A1A"/><circle cx="76.99" cy="41.17" r="2.8" fill="#8B1A1A"/></svg>
+      <span class="arc-word">Verantwortung</span>
+    </div>
+
+    <div class="paths">
+      <a href="community.html" class="path path-done">
+        <span class="path-label">12 WOCHEN GEMEISTERT</span>
+        <p class="path-heading">Für alle, die ihr Journal abgeschlossen haben</p>
+        <p class="path-desc">Zwölf Wochen lang warst du mit deinem Journal allein. Hier kannst du über deine Erfolge und Rückschläge reden, mit Menschen, die genau wissen, wovon du sprichst.</p>
+        <span class="path-arrow">Zur Community</span>
+      </a>
+      <a href="#journal" class="path path-new">
+        <span class="path-label">NEU HIER</span>
+        <p class="path-heading">Für alle, die neugierig geworden sind</p>
+        <p class="path-desc">Schön, dass du da bist. Hier gibt es keine toxische Positivität, und du musst dir nichts vormachen. Du erfährst, was echte Veränderung mit sich bringt und wie du am Ball bleibst.</p>
+        <span class="path-arrow">Das Journal entdecken</span>
+      </a>
+    </div>
+</div>
+
+  <section id="new" class="problem">
+    <h2 class="problem-heading">Diese Community ist für Menschen, die ihr Innenleben ernst nehmen.</h2>
+    <p>Manche hier haben ihr Journal gerade auf der letzten Seite zugeklappt, andere halten es zum ersten Mal in der Hand. Einen Moment kennen sie alle, und du wahrscheinlich auch: Du weißt genau, dass du die E-Mail beantworten oder das Gespräch endlich führen solltest, und greifst stattdessen zum Handy und scrollst. Die meisten Menschen bemerken solche kleinen Ausweichmanöver nicht einmal, und so bestimmen diese Manöver Tag für Tag ihr Leben.</p>
+  </section>
+
+  <section class="language-section">
+    <img src="journal_cover_de.jpg" alt="Was bleibt, entscheidest du. Dein begleitetes 12-Wochen-Journal" style="float:right; width:420px; margin: 0 0 2rem 3.5rem; border-radius:2px; display:block;">
+    <p>Nach zwölf Wochen zeigt sich die Veränderung in kleinen Momenten. Oft gelingt es dir schon, rechtzeitig zu bemerken, wenn ein altes Verhaltensmuster die Kontrolle übernehmen will. Sobald du es dann benennst, entsteht die kleine Pause, in der du entscheiden kannst, wie du reagieren möchtest. Und wenn es sich doch wieder durchgesetzt hat, schreibst du auf, was es in dir ausgelöst hat. So erkennst du es beim nächsten Mal ein Stück früher.</p>
+    <p>Hier teilst du, was du dabei erlebst, mit Menschen, die du vielleicht nie treffen wirst und die trotzdem genau wissen, wovon du sprichst, denn sie kennen dieses Journal selbst. Wenn du erzählst, wie dich ein Muster wieder erwischt hat, musst du nichts erklären und nichts beschönigen. Was passiert ist, hier offen beim Namen zu nennen und genau aussprechen zu können, welche Gefühle es in dir weckt, löst die Scham. Du merkst, dass du mit deinem Muster nicht allein bist, und das macht es leichter, dranzubleiben. All das hilft deiner Veränderung Wurzeln zu schlagen.</p>
+    <div style="clear:both;"></div>
+  </section>
+
+  <section class="pull-quote-section">
+    <p class="pull-quote">„Ausweichen erspart deinem Gehirn Mühe und verschafft dir schnelle Erleichterung. Oft genug wiederholt, hält dich genau diese Erleichterung von dem ab, was du wirklich willst.“</p>
+  </section>
+
+  <section id="journal" class="journal-section" style="background:var(--cream);">
+    <div class="journal-text">
+      <div style="text-align:center; margin-bottom:0.6rem;">
+          <h2>Was bleibt, entscheidest du.</</h2>
+          <hr class="journal-title-rule">
+      </div>
+      <span class="journal-subtitle">Dein begleitetes 12-Wochen-Journal, mit dem du den Moment erkennst, in dem du dich hinter alten Mustern versteckst, und lernst, dich anders zu entscheiden.</span>
+      <p class="journal-kicker">Bevor ein altes Muster die Kontrolle übernimmt, gibt es oft eine winzige Pause. Meistens rauschst du einfach darüber hinweg.</p>
+      <p>Dieses Journal hilft dir, sie zu entdecken und Stück für Stück zu verlängern.</p>
+      <a href="journal.html" style="display:inline-block; margin-top:1rem; font-family:var(--serif); font-size:13px; font-weight:400; letter-spacing:0.04em; padding:13px 24px; background:var(--emerald-dark); color:var(--title-cream); border-radius:3px; text-decoration:none; transition:background 0.2s;" onmouseover="this.style.background='#0D0D0D'" onmouseout="this.style.background='#196716'">So funktioniert das Journal</a>
+    </div>
+    <div class="journal-visual">
+      <div class="science-page">
+        <div class="science-page-inner">
+          <p class="science-week-label">Eine Seite aus dem Journal &nbsp;|&nbsp; Woche 3</p>
+          <h3 class="science-title">Wie Wiederholung dich prägt</h3>
+          <div class="science-rule"></div>
+          <p class="science-body">Dass dein Griff zum Handy irgendwann wie von selbst passiert, hat mit der Art zu tun, wie dein Gehirn lernt. Schon 1949 beschrieb der Psychologe Donald Hebb, was heute als eines der Grundprinzipien des Lernens gilt: Nervenzellen, die immer wieder gemeinsam aktiv sind, verbinden sich immer fester miteinander. In der Neurowissenschaft hat sich dafür ein Satz eingeprägt, der gern im englischen Original zitiert wird: „Neurons that fire together, wire together.“ Frei übersetzt: Was im Gehirn zusammen funkt, das wächst zusammen. Was du übst, geht dir schneller von der Hand, und je schneller es geht, desto weniger bewusste Anstrengung braucht es.</p>
+          <p class="science-body">Wie du inzwischen sicher schon merkst, entstehen Gewohnheiten durch Wiederholung, aber auch durch das, was danach kommt. Bringt dir ein Verhalten Erleichterung, löst sich eine Spannung oder hast du das Gefühl, etwas erledigt zu haben, dann speichert dein Gehirn es als etwas ab, das sich zu wiederholen lohnt.</p>
+          <p class="science-body">Eine Schlüsselrolle spielt dabei Dopamin (ein Botenstoff, der im Mittelhirn gebildet wird). Es gilt oft als Glückshormon, doch das stimmt nur zum Teil. Dopamin wird vor allem dann ausgeschüttet, wenn eine Belohnung in Aussicht steht, also schon in der Vorfreude. Es sorgt dafür, dass du etwas willst, noch bevor du es hast. Am Spielautomaten hält dich deshalb weniger der Gewinn selbst als die ständige Aussicht darauf, gleich zu gewinnen; sogar ein knapper Verlust kann das Verlangen noch verstärken. Mit dem Handy ist es ähnlich: Allein die Möglichkeit einer neuen Nachricht reicht, damit es dich zu sich hinzieht.</p>
+          <p class="science-body">Mit der Zeit schaltet ein oft wiederholtes Verhalten auf Autopilot. Sobald es gut genug eingeübt ist, übernehmen die Basalganglien (tief im Inneren des Gehirns gelegen, sie speichern erlernte Muster und rufen sie ab). Dein präfrontaler Kortex (der Bereich hinter deiner Stirn, der unter anderem für bewusste Entscheidungen zuständig ist) muss sich dann kaum noch einschalten.</p>
+          <p class="science-body">Dasselbe gilt für deine Gefühle und für den Umgang mit anderen. Was du oft wiederholst, fällt dir leichter, ganz egal, ob es dir guttut oder nicht. Ob du dich zurückziehst, in Streit gerätst, schweigst oder zu viel erklärst: Auch das kann allein durch Wiederholung zur Gewohnheit werden. Deshalb fühlt sich Veränderung so schwer an.</p>
+          <p class="science-body science-closing">Eine Gewohnheit zu unterbrechen heißt, ausgerechnet in dem Moment bewusst gegenzusteuern, in dem die alte Bahn schon bereitsteht und alles in dir in die vertraute Richtung drängt.</p>
+          <p class="science-body">Auch eine neue Richtung entsteht durch Wiederholung. Jedes Mal, wenn du anders handelst als sonst, stärkst du ein kleines Stück die Verbindungen, die dieses neue Verhalten tragen. Neurowissenschaftler nennen das Langzeitpotenzierung (eine messbare Verstärkung der Verbindung zwischen Nervenzellen, die immer wieder gemeinsam aktiv sind). Die alten Verbindungen dagegen werden schwächer, sobald du sie nicht mehr bedienst.</p>
+          <p class="science-body">Mit jeder Wiederholung räumt dein Nervensystem ein bisschen mehr Widerstand aus dem Weg. Was weniger Widerstand hat, passiert leichter, und was leichter passiert, passiert öfter, bis es sich irgendwann anfühlt, als wäre es einfach ein Teil von dir.</p>
+          <p class="science-body science-closing">Derselbe Mechanismus, der dein altes Muster automatisiert hat, kann auch ein neues automatisieren.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <p class="footer-follow">Folge MyJournal Community</p>
+    <div class="footer-socials">
+      <a href="https://www.tiktok.com/@myjournalcommunity" target="_blank" rel="noopener" class="footer-social">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#000000"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+        @myjournalcommunity
+      </a>
+      <svg viewBox="-3 -3 84.94 59.02" xmlns="http://www.w3.org/2000/svg" width="20" height="14" style="opacity:0.4;"><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 46.13,43.21 54.82,36.29 65.53,32.62"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.18,51.30 C 41.37,50.63 41.57,50.65 41.75,49.96 C 41.82,49.72 41.89,49.46 41.96,49.22 C 44.65,39.05 47.04,27.28 46.99,15.67"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 38.74,41.58 34.41,30.45 31.15,18.83"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.10,51.36 C 35.14,43.29 26.58,39.43 15.61,38.88"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 36.22,48.05 23.23,47.96 7.68,50.56"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.22,52.02 C 45.37,48.37 56.32,48.88 69.57,50.96"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.29,51.45 C 47.82,39.18 58.47,24.63 68.59,11.28"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 44.65,36.96 45.87,21.24 45.56,4.35"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 39.49,36.04 36.36,20.60 33.79,2.59"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 37.87,45.67 34.15,40.26 30.12,34.64 C 25.15,27.74 18.91,21.62 13.19,13.60"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.10,51.53 C 30.47,44.63 17.87,40.00 2.00,36.82"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.31,51.62 C 51.16,46.51 63.23,42.85 77.03,41.32"/><circle cx="68.59" cy="11.27" r="2.8" fill="#8B1A1A"/><circle cx="45.56" cy="4.34" r="2.8" fill="#8B1A1A"/><circle cx="33.77" cy="2.01" r="2.8" fill="#8B1A1A"/><circle cx="12.64" cy="12.88" r="2.8" fill="#8B1A1A"/><circle cx="2.00" cy="36.83" r="2.8" fill="#8B1A1A"/><circle cx="76.99" cy="41.17" r="2.8" fill="#8B1A1A"/></svg>
+      <a href="https://www.instagram.com/myjournalcommunity" target="_blank" rel="noopener" class="footer-social">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#f09433"/>
+              <stop offset="25%" style="stop-color:#e6683c"/>
+              <stop offset="50%" style="stop-color:#dc2743"/>
+              <stop offset="75%" style="stop-color:#cc2366"/>
+              <stop offset="100%" style="stop-color:#bc1888"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="url(#ig-grad)"/>
+          <circle cx="12" cy="12" r="4" stroke="url(#ig-grad)"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="url(#ig-grad)" stroke="none"/>
+        </svg>
+        @myjournalcommunity
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 MyJournal Community. Alle Rechte vorbehalten.</span>
+    </div>
+  </footer>
+
+
+<script>
+  function syncJournalHeight() {
+    var text = document.querySelector('.journal-text');
+    var visual = document.querySelector('.journal-visual');
+    if (text && visual) {
+      visual.style.height = text.offsetHeight + 'px';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', syncJournalHeight);
+  window.addEventListener('resize', syncJournalHeight);
+</script>
+</body>
+</html>

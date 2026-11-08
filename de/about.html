@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Über uns — MyJournal Community</title>
+  <meta name="description" content="Wie es zu diesem Journal kam. Und warum eine Community folgte.">
+      <link rel="alternate" hreflang="en" href="https://myjournal.community/about">
+  <link rel="alternate" hreflang="de" href="https://myjournal.community/de/about">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --emerald-dark: #196716;
+      --emerald-mid: #289527;
+      --cream: #F5F0E8;
+      --cream-dark: #DDD4C0;
+      --near-black: #0D0D0D;
+      --dark-gray-green: #3A4A3D;
+      --warm-taupe: #7A6E62;
+      --title-cream: #E1D9CB;
+      --serif: 'Merriweather', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--serif);
+      font-weight: 300;
+      background: var(--cream);
+      color: var(--near-black);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* LILY */
+    .page-lily {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120vh;
+      height: 120vh;
+      opacity: 0.015;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .page-lily svg { width: 100%; height: 100%; }
+    nav, main, footer { position: relative; z-index: 1; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      border-bottom: 0.5px solid rgba(27,30,29,0.15);
+      position: sticky;
+      top: 0;
+      background: var(--cream);
+      z-index: 100;
+    }
+    .nav-logo { font-size: 12px; letter-spacing: 0.08em; font-style: italic; color: var(--near-black); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.05em; color: var(--dark-gray-green); transition: color 0.2s; font-weight: 300; }
+    .nav-links a:hover { color: var(--near-black); }
+    .nav-links a.active { color: var(--near-black); border-bottom: 0.5px solid var(--near-black); padding-bottom: 1px; }
+
+    /* MAIN */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 7rem 4rem 8rem;
+    }
+
+    .content-col {
+      max-width: 660px;
+    }
+
+    .page-label {
+      display: none;
+    }
+
+    .page-title {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--near-black);
+      letter-spacing: -0.01em;
+      margin-bottom: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 0.5px solid rgba(27,30,29,0.15);
+    }
+
+    .about-body p {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--near-black);
+      margin-bottom: 2rem;
+      text-align: justify;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+    }
+
+    .about-body p:last-child { margin-bottom: 0; }
+
+    .about-pull {
+      margin: 3.5rem 0;
+      padding-left: 2rem;
+      border-left: 4px solid var(--emerald-mid);
+    }
+
+    .about-pull p {
+      font-size: clamp(17px, 1.8vw, 21px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.8;
+      color: var(--near-black);
+      text-align: left;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      border-top: 0.5px solid rgba(27,30,29,0.15);
+    }
+    .footer-follow { font-size: 16px; font-weight: 400; letter-spacing: 0.01em; color: #0D0D0D; margin-bottom: 0.5rem; }
+    .footer-socials { display: flex; align-items: center; gap: 2rem; }
+    .footer-social { font-size: 14px; font-weight: 300; letter-spacing: 0.02em; color: var(--near-black); transition: opacity 0.2s; display: flex; align-items: center; gap: 7px; }
+    .footer-social:hover { opacity: 0.7; }
+    .footer-bottom { width: 100%; display: flex; justify-content: center; align-items: center; padding-top: 1.5rem; border-top: 0.5px solid rgba(27,30,29,0.12); }
+    .footer-copy { font-size: 10px; letter-spacing: 0.04em; color: var(--warm-taupe); font-weight: 300; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      main { padding: 4rem 1.5rem 6rem; }
+      .page-title { font-size: 28px; margin-bottom: 2.5rem; padding-bottom: 2rem; }
+      .about-body p { font-size: 16px; }
+      .about-pull { margin: 2.5rem 0; padding-left: 1.25rem; }
+      .about-pull p { font-size: 17px; }
+      .content-col { max-width: 100%; }
+      footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .footer-socials { flex-direction: column; align-items: center; gap: 1rem; }
+    }
+  
+    .lang-switch { display: flex; align-items: center; gap: 0.45rem; font-size: 11px; letter-spacing: 0.08em; color: var(--warm-taupe); margin-left: 2.5rem; }
+    .lang-switch a { color: var(--dark-gray-green); transition: color 0.2s; }
+    .lang-switch a:hover { color: var(--near-black); }
+    .lang-switch a.active { color: var(--near-black); border-bottom: 0.5px solid var(--near-black); padding-bottom: 1px; }
+    .nav-right { display: flex; align-items: center; }
+  </style>
+</head>
+<body>
+
+  <div class="page-lily">
+    <svg viewBox="0 0 78.94 53.02" xmlns="http://www.w3.org/2000/svg">
+<path fill="none" stroke="#1D1D1B" stroke-width="0.43" stroke-linecap="round" d="M 41.21,51.99 C 46.13,43.21 54.82,36.29 65.53,32.62"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.40" stroke-linecap="round" d="M 41.18,51.30 C 41.37,50.63 41.57,50.65 41.75,49.96 C 41.82,49.72 41.89,49.46 41.96,49.22 C 44.65,39.05 47.04,27.28 46.99,15.67"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.50" stroke-linecap="round" d="M 41.21,51.99 C 38.74,41.58 34.41,30.45 31.15,18.83"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.50" stroke-linecap="round" d="M 41.10,51.36 C 35.14,43.29 26.58,39.43 15.61,38.88"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.51" stroke-linecap="round" d="M 41.21,51.99 C 36.22,48.05 23.23,47.96 7.68,50.56"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.45" stroke-linecap="round" d="M 41.22,52.02 C 45.37,48.37 56.32,48.88 69.57,50.96"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.41" stroke-linecap="round" d="M 41.29,51.45 C 47.82,39.18 58.47,24.63 68.59,11.28"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.46" stroke-linecap="round" d="M 41.15,51.15 C 44.65,36.96 45.87,21.24 45.56,4.35"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.51" stroke-linecap="round" d="M 41.15,51.15 C 39.49,36.04 36.36,20.60 33.79,2.59"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.50" stroke-linecap="round" d="M 41.15,51.15 C 37.87,45.67 34.15,40.26 30.12,34.64 C 25.15,27.74 18.91,21.62 13.19,13.60"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.45" stroke-linecap="round" d="M 41.10,51.53 C 30.47,44.63 17.87,40.00 2.00,36.82"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.40" stroke-linecap="round" d="M 41.31,51.62 C 51.16,46.51 63.23,42.85 77.03,41.32"/>
+<path fill="#1D1D1B" d="M 67.93,11.97 C 68.34,12.37 68.97,12.37 69.33,11.99 C 69.70,11.61 69.66,10.98 69.25,10.59 C 68.83,10.19 68.20,10.18 67.84,10.57 C 67.47,10.95 67.51,11.58 67.93,11.97 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.24" stroke-linecap="round" d="M 67.95,11.95 C 68.34,12.36 68.95,12.39 69.30,12.02 C 69.66,11.65 69.62,11.02 69.23,10.60 C 68.83,10.19 68.22,10.17 67.87,10.54 C 67.51,10.91 67.55,11.54 67.95,11.95"/>
+<path fill="#1D1D1B" d="M 45.69,5.29 C 46.24,5.22 46.63,4.73 46.56,4.21 C 46.49,3.68 45.98,3.32 45.43,3.40 C 44.88,3.47 44.49,3.96 44.56,4.48 C 44.63,5.01 45.14,5.37 45.69,5.29 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.29" stroke-linecap="round" d="M 45.69,5.29 C 46.24,5.20 46.63,4.71 46.56,4.19 C 46.49,3.67 45.98,3.32 45.43,3.40 C 44.88,3.49 44.49,3.97 44.56,4.49 C 44.63,5.01 45.14,5.37 45.69,5.29"/>
+<path fill="#1D1D1B" d="M 33.88,2.97 C 34.43,2.90 34.83,2.42 34.77,1.90 C 34.71,1.38 34.21,1.00 33.66,1.06 C 33.10,1.13 32.70,1.60 32.76,2.13 C 32.82,2.65 33.32,3.03 33.88,2.97 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.45" stroke-linecap="round" d="M 33.87,2.96 C 34.43,2.89 34.83,2.41 34.77,1.89 C 34.71,1.37 34.21,1.00 33.66,1.07 C 33.10,1.14 32.71,1.62 32.76,2.14 C 32.82,2.66 33.32,3.03 33.87,2.96"/>
+<path fill="#1D1D1B" d="M 13.21,13.65 C 13.67,13.32 13.78,12.70 13.47,12.27 C 13.15,11.85 12.53,11.77 12.07,12.11 C 11.62,12.45 11.50,13.07 11.82,13.49 C 12.13,13.92 12.76,13.99 13.21,13.65 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.69" stroke-linecap="round" d="M 13.20,13.63 C 13.64,13.28 13.75,12.65 13.44,12.24 C 13.13,11.82 12.53,11.77 12.09,12.13 C 11.65,12.49 11.54,13.11 11.85,13.53 C 12.15,13.94 12.76,13.99 13.20,13.63"/>
+<path fill="#1D1D1B" d="M 2.91,36.97 C 3.00,36.39 2.66,35.86 2.16,35.78 C 1.66,35.70 1.18,36.10 1.09,36.68 C 1.00,37.26 1.33,37.79 1.83,37.87 C 2.34,37.95 2.82,37.54 2.91,36.97 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.45" stroke-linecap="round" d="M 2.90,36.96 C 2.98,36.39 2.65,35.86 2.15,35.78 C 1.65,35.70 1.18,36.10 1.10,36.68 C 1.02,37.26 1.35,37.79 1.85,37.87 C 2.35,37.95 2.82,37.54 2.90,36.96"/>
+<path fill="#1D1D1B" d="M 76.08,41.23 C 76.11,41.81 76.55,42.26 77.06,42.22 C 77.56,42.19 77.94,41.69 77.90,41.11 C 77.86,40.53 77.42,40.08 76.92,40.12 C 76.42,40.15 76.04,40.65 76.08,41.23 Z"/>
+<path fill="none" stroke="#1D1D1B" stroke-width="0.48" stroke-linecap="round" d="M 76.08,41.23 C 76.12,41.81 76.55,42.25 77.05,42.22 C 77.56,42.19 77.93,41.69 77.90,41.11 C 77.86,40.53 77.43,40.08 76.92,40.12 C 76.42,40.15 76.04,40.65 76.08,41.23"/>
+</svg>
+  </div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">MyJournal Community</a>
+    <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="journal.html">Das Journal</a></li>
+      <li><a href="community.html">Die Community</a></li>
+      <li><a href="about.html" class="active">Über uns</a></li>
+      <li><a href="contact.html">Kontakt</a></li>
+    </ul>
+    <div class="lang-switch"><a href="../about.html" hreflang="en">EN</a><span>|</span><a href="about.html" class="active" hreflang="de">DE</a></div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="content-col">
+    <span class="page-label">Über uns</span>
+    <h1 class="page-title">Wie es zu diesem Journal kam. Und warum eine Community folgte.</h1</h1>
+
+    <div class="about-body">
+
+      <p>Viele Menschen wissen ziemlich genau, was ihnen guttun würde, und tun es trotzdem nicht. Diese Lücke zwischen Wissen und Tun ist in der Verhaltensforschung gut belegt, und die Wissenschaft weiß inzwischen viel darüber, wie man sie schließen kann. Nur kommen die wenigsten an dieses Wissen heran.</p>
+
+      <p>Ein gutes Coaching kostet schnell mehr, als das Monatsbudget hergibt, und neben Job und Familie fehlt oft die Zeit für feste Termine. Dazu kommt bei vielen die Scham, sich überhaupt Unterstützung zu holen. Wer an diesen Hürden scheitert, zieht irgendwann einen bitteren Schluss: Veränderung ist etwas für andere, für Menschen mit mehr Zeit und mehr Geld.</p>
+
+      <p>Genau deshalb haben wir dieses Journal entwickelt. Dafür haben wir auf die Verhaltensforschung zurückgegriffen und auf viele Jahre, in denen wir mit Coaches gearbeitet haben, die aus der Psychologie, der Sozialarbeit und der Pädagogik kommen. Herausgekommen ist ein Workbook, das sich jeder leisten und jederzeit aufschlagen kann. Es respektiert deine Zeit, verlangt nur Ehrlichkeit von dir und nimmt deine Intelligenz ernst.</p>
+
+      <div class="about-pull">
+        <p>Die Community kam dazu, weil diese Arbeit verändert, wie man sich selbst sieht. Und eine solche Veränderung möchte man mit Menschen teilen, die sie aus eigener Erfahrung kennen.</p>
+      </div>
+
+      <p>Nach zwölf Wochen hast du eine eigene Sprache für das, was in dir vorgeht. Du hast Worte für deine Muster und erkennst den Moment, in dem die alte Reaktion übernehmen will. Natürlich kannst du darüber auch mit Freunden oder deiner Familie sprechen. Aber es ist etwas anderes, in einer Runde zu sagen: „Ich habe mich wieder beim Verhandeln mit mir selbst ertappt“, und die anderen nicken nur, weil sie genau wissen, was du meinst. Sie kennen das von sich selbst, die Ausrede, die gerade so gut klingt, oder das „Nur dieses eine Mal“.</p>
+
+      <p>Die MyJournal Community ist genau diese Runde. Sie steht allen offen, die die zwölf Wochen hinter sich haben, und denen, die gerade überlegen, ob sie einsteigen.</p>
+
+    </div>
+    </div>
+  </main>
+
+  <footer id="contact">
+    <p class="footer-follow">Folge MyJournal Community</p>
+    <div class="footer-socials">
+      <a href="https://www.tiktok.com/@myjournalcommunity" target="_blank" rel="noopener" class="footer-social">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#000000"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+        @myjournalcommunity
+      </a>
+      <svg viewBox="-3 -3 84.94 59.02" xmlns="http://www.w3.org/2000/svg" width="20" height="14" style="opacity:0.4;"><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 46.13,43.21 54.82,36.29 65.53,32.62"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.18,51.30 C 41.37,50.63 41.57,50.65 41.75,49.96 C 41.82,49.72 41.89,49.46 41.96,49.22 C 44.65,39.05 47.04,27.28 46.99,15.67"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 38.74,41.58 34.41,30.45 31.15,18.83"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.10,51.36 C 35.14,43.29 26.58,39.43 15.61,38.88"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.21,51.99 C 36.22,48.05 23.23,47.96 7.68,50.56"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.22,52.02 C 45.37,48.37 56.32,48.88 69.57,50.96"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.29,51.45 C 47.82,39.18 58.47,24.63 68.59,11.28"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 44.65,36.96 45.87,21.24 45.56,4.35"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 39.49,36.04 36.36,20.60 33.79,2.59"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.15,51.15 C 37.87,45.67 34.15,40.26 30.12,34.64 C 25.15,27.74 18.91,21.62 13.19,13.60"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.10,51.53 C 30.47,44.63 17.87,40.00 2.00,36.82"/><path fill="none" stroke="#8B1A1A" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 41.31,51.62 C 51.16,46.51 63.23,42.85 77.03,41.32"/><circle cx="68.59" cy="11.27" r="2.8" fill="#8B1A1A"/><circle cx="45.56" cy="4.34" r="2.8" fill="#8B1A1A"/><circle cx="33.77" cy="2.01" r="2.8" fill="#8B1A1A"/><circle cx="12.64" cy="12.88" r="2.8" fill="#8B1A1A"/><circle cx="2.00" cy="36.83" r="2.8" fill="#8B1A1A"/><circle cx="76.99" cy="41.17" r="2.8" fill="#8B1A1A"/></svg>
+      <a href="https://www.instagram.com/myjournalcommunity" target="_blank" rel="noopener" class="footer-social">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#f09433"/>
+              <stop offset="25%" style="stop-color:#e6683c"/>
+              <stop offset="50%" style="stop-color:#dc2743"/>
+              <stop offset="75%" style="stop-color:#cc2366"/>
+              <stop offset="100%" style="stop-color:#bc1888"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="url(#ig-grad)"/>
+          <circle cx="12" cy="12" r="4" stroke="url(#ig-grad)"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="url(#ig-grad)" stroke="none"/>
+        </svg>
+        @myjournalcommunity
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 MyJournal Community. Alle Rechte vorbehalten.</span>
+    </div>
+  </footer>
+
+</body>
+</html>

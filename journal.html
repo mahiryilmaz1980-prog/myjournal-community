@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Journal — MyJournal Community</title>
   <meta name="description" content="A 12-week guided journal built on behavioral change methodology.">
+    <link rel="alternate" hreflang="en" href="https://myjournal.community/journal">
+  <link rel="alternate" hreflang="de" href="https://myjournal.community/de/journal">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
@@ -261,6 +263,12 @@
       .footer-socials { flex-direction: column; align-items: center; gap: 1rem; }
       footer { padding-left: 1.5rem; padding-right: 1.5rem; }
     }
+  
+    .lang-switch { display: flex; align-items: center; gap: 0.45rem; font-size: 11px; letter-spacing: 0.08em; color: var(--warm-taupe); margin-left: 2.5rem; }
+    .lang-switch a { color: var(--dark-gray-green); transition: color 0.2s; }
+    .lang-switch a:hover { color: var(--near-black); }
+    .lang-switch a.active { color: var(--near-black); border-bottom: 0.5px solid var(--near-black); padding-bottom: 1px; }
+    .nav-right { display: flex; align-items: center; }
   </style>
 </head>
 <body>
@@ -296,12 +304,15 @@
 
   <nav>
     <a href="index.html" class="nav-logo">MyJournal Community</a>
+    <div class="nav-right">
     <ul class="nav-links">
       <li><a href="journal.html" class="active">The Journal</a></li>
       <li><a href="community.html">Community</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
+    <div class="lang-switch"><a href="journal.html" class="active" hreflang="en">EN</a><span>|</span><a href="de/journal.html" hreflang="de">DE</a></div>
+    </div>
   </nav>
 
   <main>
