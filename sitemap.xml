@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://myjournal.community/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myjournal.community/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://myjournal.community/de/"/>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://myjournal.community/de/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myjournal.community/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://myjournal.community/de/"/>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://myjournal.community/journal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myjournal.community/journal"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://myjournal.community/de/journal"/>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://myjournal.community/de/journal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myjournal.community/journal"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://myjournal.community/de/journal"/>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://myjournal.community/community</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myjournal.community/community"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://myjournal.community/de/community"/>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://myjournal.community/de/community</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myjournal.community/community"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://myjournal.community/de/community"/>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://myjournal.community/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myjournal.community/about"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://myjournal.community/de/about"/>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://myjournal.community/de/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myjournal.community/about"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://myjournal.community/de/about"/>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://myjournal.community/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myjournal.community/contact"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://myjournal.community/de/contact"/>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://myjournal.community/de/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myjournal.community/contact"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://myjournal.community/de/contact"/>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+</urlset>
